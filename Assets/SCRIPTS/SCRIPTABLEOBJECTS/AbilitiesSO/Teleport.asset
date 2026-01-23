@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679ba5b76c918964ea344e97e1bac94f, type: 3}
+  m_Name: Teleport
+  m_EditorClassIdentifier: 
+  abilityName: Teletransportacion
+  icon: {fileID: 0}
+  cooldown: 2.5
+  damage: 0
+  playerSpeedMultiplier: 1
+  tempColor: {r: 0, g: 1, b: 0.08161616, a: 1}
+  projectilePrefab: {fileID: 5959151202340175822, guid: 035deed0e3da2d8489f2615a1034e43e, type: 3}
+  speed: 12
+  shootAngle: 8
