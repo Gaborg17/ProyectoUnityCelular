@@ -10,13 +10,15 @@ public class ProjectileAbilitySO : AbilitySO
     public float shootAngle;
 
 
-    public override void Activate(GameObject user)
+    public override void Activate(Transform user, int direction)
     {
-            GameObject projectile = Instantiate(projectilePrefab, user.transform.position, user.transform.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, user.position, user.rotation);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-            rb.AddForce(Vector3.right * speed, ForceMode.Impulse);
+            rb.AddForce(direction * Vector3.right * speed, ForceMode.Impulse);
             rb.AddForce(Vector3.up * shootAngle, ForceMode.Impulse);
+
+        Destroy(projectile.gameObject,4f);
 
             Debug.Log($"Disparando {abilityName}");
             //LogicaDisparo

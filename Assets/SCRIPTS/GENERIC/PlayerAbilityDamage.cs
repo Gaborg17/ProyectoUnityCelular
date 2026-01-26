@@ -5,6 +5,7 @@ public class PlayerAbilityDamage : MonoBehaviour
 
     
     [SerializeField] private AbilitySO abilitySO;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -18,11 +19,23 @@ public class PlayerAbilityDamage : MonoBehaviour
                     Destroy(this.gameObject);
                     break;
                 case "Congelar":
+                    other.GetComponent<Enemy>().frozen = true;
                     Destroy(this.gameObject);
                     break;
                 case "Control Mental":
+                    other.GetComponent<Enemy>().mindControl = true;
                     Destroy(this.gameObject);
                     break;
+                case "Protect":
+                    other.GetComponent<IDamageable>().GetDamaged(abilitySO.damage);
+                    
+                    break;
+                case "Sword":
+                    other.GetComponent<IDamageable>().GetDamaged(abilitySO.damage);
+                    Collider sword = GetComponent<Collider>();
+                    sword.enabled = false;
+                    break;
+
             }
 
         }

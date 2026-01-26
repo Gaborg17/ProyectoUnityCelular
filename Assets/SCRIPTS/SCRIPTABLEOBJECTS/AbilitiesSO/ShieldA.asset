@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Protect
   icon: {fileID: 0}
-  cooldown: 0
+  cooldown: 10
   damage: 12
   playerSpeedMultiplier: 1.5
   tempColor: {r: 0.25146627, g: 0, b: 1, a: 1}
-  radius: 0
+  shieldPrefab: {fileID: 217897126285837271, guid: 01c9257513a53eb409882d852c6ebf18, type: 3}
+  shieldDuration: 10

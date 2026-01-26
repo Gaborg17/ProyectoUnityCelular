@@ -15,7 +15,7 @@ public abstract class AbilitySO : ScriptableObject
 
 
     public Color tempColor;
-    public abstract void Activate(GameObject user);
+    public abstract void Activate(Transform user, int direction);
 
     public IEnumerator Cooldown()
     {

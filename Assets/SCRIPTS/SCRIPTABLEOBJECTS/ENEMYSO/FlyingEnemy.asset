@@ -15,3 +15,4 @@ MonoBehaviour:
   attackCooldown: 2
   enemyHealth: 12
   type: 1
+  movementSpeed: 5

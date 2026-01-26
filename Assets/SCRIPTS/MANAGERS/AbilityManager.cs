@@ -12,6 +12,11 @@ public class AbilityManager : MonoBehaviour
 
     [SerializeField] private float abilityChangeTimer;
 
+    [SerializeField]private Transform abilitySpawn;
+
+    private GameObject player;
+    private PlayerMovement pM;
+
     private void OnValidate()
     {
         buttonSprite.color = currentAbility.tempColor;
@@ -19,6 +24,8 @@ public class AbilityManager : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        pM = player.GetComponent<PlayerMovement>();
         StartCoroutine(ChangeAbility());
     }
 
@@ -30,8 +37,9 @@ public class AbilityManager : MonoBehaviour
     {
         if (currentAbility != null && !AbilitySO.isOnCooldown)
         {
-            currentAbility.Activate(gameObject);
+            currentAbility.Activate(abilitySpawn, pM.direction);
             StartCoroutine(currentAbility.Cooldown());
+            pM.actualSpeed = pM.walkSpeed * currentAbility.playerSpeedMultiplier;
         }
         else
         {
@@ -45,6 +53,11 @@ public class AbilityManager : MonoBehaviour
         yield return new WaitForSeconds(abilityChangeTimer);
         currentAbility = availableAbilities[RandomNumber()];
         buttonSprite.color = currentAbility.tempColor;
+        abilitySpawn.gameObject.SetActive(false);
+        if (!AbilitySO.isOnCooldown)
+        {
+            pM.actualSpeed = pM.walkSpeed;
+        }
         StartCoroutine(ChangeAbility());
     }
 
