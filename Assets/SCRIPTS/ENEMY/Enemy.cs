@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
 
-        targetPosition = closest.transform;
+        targetPosition = closest?.transform;
     }
 
 

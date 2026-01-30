@@ -17,6 +17,10 @@ public class AbilityManager : MonoBehaviour
     private GameObject player;
     private PlayerMovement pM;
 
+    public float timer;
+    public float durationMultiplier;
+
+
     private void OnValidate()
     {
         buttonSprite.color = currentAbility.tempColor;
@@ -50,7 +54,7 @@ public class AbilityManager : MonoBehaviour
     
     public IEnumerator ChangeAbility()
     {
-        yield return new WaitForSeconds(abilityChangeTimer);
+        timer = abilityChangeTimer;
         currentAbility = availableAbilities[RandomNumber()];
         buttonSprite.color = currentAbility.tempColor;
         abilitySpawn.gameObject.SetActive(false);
@@ -58,13 +62,35 @@ public class AbilityManager : MonoBehaviour
         {
             pM.actualSpeed = pM.walkSpeed;
         }
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
         StartCoroutine(ChangeAbility());
     }
 
+    
     private int RandomNumber()
     {
         int randomNum = Random.Range(0, availableAbilities.Length);
         return randomNum;
+    }
+
+
+
+    [ContextMenu("Pay")]
+    public void PayToChange()
+    {
+        timer = 0;
+    }
+
+
+    [ContextMenu("Extend")]
+    public void PayToExtend()
+    {
+        timer = abilityChangeTimer * durationMultiplier;
     }
 
 }

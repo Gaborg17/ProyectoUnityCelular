@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,11 +19,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private CheckGround checkGround;
+    private CheckVisibility checkVisibility;
 
+
+   
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         checkGround = GetComponent<CheckGround>();
+        checkVisibility = GetComponent<CheckVisibility>();
         actualSpeed = walkSpeed;
     }
 
@@ -39,9 +44,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if(moveVector.y > 0.65f && checkGround.IsGrounded())
+        if(moveVector.y > 0.5f && checkGround.IsGrounded())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            canJump = true;
+        }
+
+        if(moveVector.y > 0.98f && !checkGround.IsGrounded() && canJump == true)
+        {
+            rb.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
             canJump = false;
         }
     }
@@ -85,11 +96,15 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         FlipX();
+        OutOfRangeCheck();
     }
 
-
-    private void OnBecameInvisible()
+    private void OutOfRangeCheck()
     {
-        Debug.Log("Fuera de encuadre");
+        if (!checkVisibility.IsVisible())
+        {
+            Debug.Log("Fuera de Rango");
+        }
+
     }
 }
