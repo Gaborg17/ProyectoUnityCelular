@@ -20,7 +20,8 @@ public class AbilityManager : MonoBehaviour
     public float timer;
     public float durationMultiplier;
 
-
+    [SerializeField] private int gemsToChange;
+    [SerializeField] private int gemsToExtend;
     private void OnValidate()
     {
         buttonSprite.color = currentAbility.tempColor;
@@ -80,17 +81,26 @@ public class AbilityManager : MonoBehaviour
 
 
 
-    [ContextMenu("Pay")]
+
     public void PayToChange()
     {
-        timer = 0;
+        if(GameManager.Instance.gemasTotales >= gemsToChange)
+        {
+            timer = 0;
+            GameManager.Instance.gemasTotales -= gemsToChange;
+        }
+        
     }
 
 
-    [ContextMenu("Extend")]
+
     public void PayToExtend()
     {
-        timer = abilityChangeTimer * durationMultiplier;
+        if (GameManager.Instance.gemasTotales >= gemsToExtend)
+        {
+            timer = abilityChangeTimer * durationMultiplier;
+            GameManager.Instance.gemasTotales -= gemsToExtend;
+        }
     }
 
 }

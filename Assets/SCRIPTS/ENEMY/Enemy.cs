@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool frozen;
     public bool mindControl;
 
-
+    private ReturnToPool poolReturn;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
         targetPosition = player;
+        poolReturn = GetComponent<ReturnToPool>();
     }
 
     private void Update()
@@ -95,6 +96,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void OnDeath()
     {
-        Destroy(this.gameObject);
+        poolReturn.Return();
+        ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
+        oP.SpawnFromPool("Gema", this.transform.position);
     }
 }
