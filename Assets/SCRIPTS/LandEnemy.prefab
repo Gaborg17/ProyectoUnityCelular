@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6268267651657122892}
   - component: {fileID: 4035713924582755452}
   - component: {fileID: 3604935863349811142}
+  - component: {fileID: 4829684303515651661}
   m_Layer: 7
   m_Name: LandEnemy
   m_TagString: Enemy
@@ -202,3 +203,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Enemigo
   returnDelay: 0
+--- !u!114 &4829684303515651661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6231977218122940663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb5ded6b45eb78409ca5e3c52652c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visibleDistance: 5

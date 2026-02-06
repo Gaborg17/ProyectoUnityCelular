@@ -13,7 +13,7 @@ public class CheckGround : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(rayOrigin.position,-rayOrigin.up,detectionDistance,grndMasks);
+        return Physics.CheckBox(rayOrigin.position,new Vector3(detectionDistance,.2f,detectionDistance),Quaternion.identity,grndMasks);
         
     }
 
@@ -22,7 +22,7 @@ public class CheckGround : MonoBehaviour
         Gizmos.color = Color.blue;
         if (rayDraw && rayOrigin != null)
         {
-            Gizmos.DrawRay(rayOrigin.position,-rayOrigin.up * detectionDistance);
+            Gizmos.DrawWireCube(rayOrigin.position, new Vector3(detectionDistance, .2f, detectionDistance));
         }
     }
 

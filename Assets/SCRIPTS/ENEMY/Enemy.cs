@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool mindControl;
 
     private ReturnToPool poolReturn;
+    private CheckVisibility checkVisibility;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -22,11 +23,23 @@ public class Enemy : MonoBehaviour, IDamageable
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
         targetPosition = player;
+        checkVisibility = GetComponent<CheckVisibility>();
         poolReturn = GetComponent<ReturnToPool>();
     }
 
+    private void OnEnable()
+    {
+        rbE = GetComponent<Rigidbody>();
+        rbE.linearVelocity = Vector3.zero;
+        health = enemySO.enemyHealth;
+        attackCooldown = enemySO.attackCooldown;
+        targetPosition = player;
+    }
+
+
     private void Update()
     {
+        OutOfRangeCheck();
         if (!frozen)
         {
             MoveToTarget();
@@ -42,7 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void MoveToTarget()
     {
-        if(targetPosition != null)
+        if(targetPosition != null && targetPosition.position.y >= (transform.position.y - 2))
         {
             Vector3 newPosition = newPosition = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.position.x,0,0), enemySO.movementSpeed * Time.deltaTime);
             rbE.MovePosition(newPosition);
@@ -100,4 +113,16 @@ public class Enemy : MonoBehaviour, IDamageable
         ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
         oP.SpawnFromPool("Gema", this.transform.position);
     }
+
+    private void OutOfRangeCheck()
+    {
+        if (!checkVisibility.IsVisible())
+        {
+            poolReturn.Return();
+            ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
+            oP.SpawnFromPool("Gema", this.transform.position);
+        }
+
+    }
+
 }
