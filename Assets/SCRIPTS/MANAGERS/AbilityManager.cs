@@ -80,7 +80,12 @@ public class AbilityManager : MonoBehaviour
     }
 
 
-
+    public void StopCooldown()
+    {
+        StopCoroutine(currentAbility.Cooldown());
+        AbilitySO.isOnCooldown = false;
+        AbilitySO.counter = 0;
+    }
 
     public void PayToChange()
     {

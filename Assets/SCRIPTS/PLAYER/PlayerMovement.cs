@@ -21,7 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private CheckGround checkGround;
     private CheckVisibility checkVisibility;
 
+    [SerializeField] float joystickThreshold = 0.9f;
 
+    private bool tryJump;
+    private bool wasAboveThreshold;
+
+    [SerializeField]private float coyoteTime = 0.12f;
+    private float coyoteTimeCounter;
    
     private void Start()
     {
@@ -44,15 +50,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if(moveVector.y > 0.5f && checkGround.IsGrounded())
+        if (checkGround.IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        bool isAboveThreshold = moveVector.y > joystickThreshold;
+
+        if (isAboveThreshold && !wasAboveThreshold)
+        {
+            tryJump = true;
+        }
+
+        wasAboveThreshold = isAboveThreshold;
+
+        if (tryJump == true && coyoteTimeCounter > 0f)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canJump = true;
+            tryJump = false;
         }
+
+        
 
         if(moveVector.y > 0.98f && !checkGround.IsGrounded() && canJump == true)
         {
-            rb.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce * 1.3f, ForceMode.Impulse);
             canJump = false;
         }
     }
@@ -90,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     private void FixedUpdate()
     {
         Move();
@@ -103,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!checkVisibility.IsVisible())
         {
+            GameManager.Instance.gameOver = true;
             Debug.Log("Fuera de Rango");
         }
 

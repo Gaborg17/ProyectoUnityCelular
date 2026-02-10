@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 
     public int gemasTotales;
     public int tiempoDeLaRonda;
+    public int mejorTiempo;
+
+    public bool gameOver = false;
 
 
 

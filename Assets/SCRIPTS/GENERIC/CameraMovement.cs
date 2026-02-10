@@ -11,6 +11,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float speedMultiplier;
 
+    public bool moveCamera = true;
+
     private void Start()
     {
         StartCoroutine(IncrementSpeed());
@@ -22,7 +24,11 @@ public class CameraMovement : MonoBehaviour
 
     private void UpwardsMovement()
     {
-        transform.Translate(Vector3.up * raisingSpeed * Time.deltaTime,Space.World);
+        if (moveCamera)
+        {
+            transform.Translate(Vector3.up * raisingSpeed * Time.deltaTime, Space.World);
+
+        }
     }
 
     private IEnumerator IncrementSpeed()
