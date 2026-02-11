@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6876367902194431855}
   - component: {fileID: 2151237742033273984}
   - component: {fileID: 1203420019200031831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barril
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

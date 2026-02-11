@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6728490833755717416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CajaLP
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3824463108939498266}
   - component: {fileID: 6290700540561908482}
   - component: {fileID: 5256944572204746027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CajaLP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
