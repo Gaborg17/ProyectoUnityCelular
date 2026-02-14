@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Fireball
   icon: {fileID: 0}
-  cooldown: 1
+  cooldown: 0.3
   damage: 12
   playerSpeedMultiplier: 0.4
   tempColor: {r: 1, g: 0.49108696, b: 0, a: 1}
   projectilePrefab: {fileID: 7620451676068385654, guid: 832a6c46d945fc9408155e6c0fa9dc4e, type: 3}
-  speed: 5
+  speed: 10
   shootAngle: 0

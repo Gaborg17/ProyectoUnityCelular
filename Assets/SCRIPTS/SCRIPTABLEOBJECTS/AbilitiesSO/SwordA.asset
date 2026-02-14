@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Sword
   icon: {fileID: 0}
-  cooldown: 0.2
+  cooldown: 0.1
   damage: 4
   playerSpeedMultiplier: 1
   tempColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
