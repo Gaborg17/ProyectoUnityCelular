@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int tiempoDeLaRonda;
     public int mejorTiempo;
 
+    public int distanciaDeLaRonda;
+    public int mejorDistancia;
+
     public bool gameOver = false;
 
 

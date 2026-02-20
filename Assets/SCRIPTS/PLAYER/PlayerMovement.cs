@@ -1,4 +1,5 @@
-using System.Linq;
+using System;
+using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,15 +27,20 @@ public class PlayerMovement : MonoBehaviour
     private bool tryJump;
     private bool wasAboveThreshold;
 
-    [SerializeField]private float coyoteTime = 0.12f;
+    [SerializeField] private float coyoteTime = 0.12f;
     private float coyoteTimeCounter;
-   
+
+    private Vector3 distanceZero;
+
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         checkGround = GetComponent<CheckGround>();
         checkVisibility = GetComponent<CheckVisibility>();
         actualSpeed = walkSpeed;
+        distanceZero = transform.position;
     }
 
 
@@ -76,11 +82,11 @@ public class PlayerMovement : MonoBehaviour
             tryJump = false;
         }
 
-        
 
-        if(moveVector.y > 0.98f && !checkGround.IsGrounded() && canJump == true)
+
+        if (moveVector.y > 0.98f && !checkGround.IsGrounded() && canJump == true)
         {
-            rb.AddForce(Vector3.up * jumpForce * 1.3f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce * 1.1f, ForceMode.Impulse);
             canJump = false;
         }
     }
@@ -103,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        else if(moveVector.x > 0.1)
+        else if (moveVector.x > 0.1)
         {
             lookingLeft = false;
 
@@ -112,18 +118,46 @@ public class PlayerMovement : MonoBehaviour
         else if (moveVector.x < -0.1)
         {
             lookingLeft = true;
-            
+
 
         }
 
     }
 
-    private void FixedUpdate()
+    private void moveCameraUp()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (viewPos.y > 0.85f)
+        {
+            Camera.main.transform.Translate(Vector3.up * 5 * Time.deltaTime, Space.World);
+        }
+
+    }
+
+    private int UpdateDistance()
+    {
+
+        int distance = (int)(transform.position.y - distanceZero.y);
+
+        distance = (int)Mathf.Max(0f, distance);
+
+        if(distance > GameManager.Instance.distanciaDeLaRonda)
+        {
+            GameManager.Instance.distanciaDeLaRonda = distance;
+        }
+
+        return GameManager.Instance.distanciaDeLaRonda;
+    }
+
+private void FixedUpdate()
     {
         Move();
         Jump();
         FlipX();
         OutOfRangeCheck();
+        moveCameraUp();
+        UpdateDistance();
     }
 
     private void OutOfRangeCheck()

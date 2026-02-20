@@ -1768,6 +1768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibleDistance: 22
+  inFrameDistance: 0
 --- !u!1 &4451155558512637362
 GameObject:
   m_ObjectHideFlags: 0

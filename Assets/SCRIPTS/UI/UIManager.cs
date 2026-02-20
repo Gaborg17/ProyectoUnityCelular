@@ -10,6 +10,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private TextMeshProUGUI mejorTiempo;
     [SerializeField] private TextMeshProUGUI tiempoRonda;
+    [SerializeField] private TextMeshProUGUI distanciaRonda;
+    [SerializeField] private TextMeshProUGUI mejorDistancia;
+
+
+
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameoverMenu;
@@ -25,6 +30,7 @@ public class UIManager : MonoBehaviour
     {
         GemCounterUpdate();
         GameOver();
+        DistanceCounter();
     }
 
 
@@ -41,13 +47,17 @@ public class UIManager : MonoBehaviour
             
             time += Time.deltaTime;
             GameManager.Instance.tiempoDeLaRonda = ((int)time);
-            timer.text = ((short)time).ToString();
-
             yield return null;
         }
     }
 
-
+    private void DistanceCounter()
+    {
+        if (inPlay)
+        {
+            timer.text = $"{GameManager.Instance.distanciaDeLaRonda} m";
+        }
+    }
 
     public void PauseGame()
     {
@@ -68,25 +78,37 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
         GameManager.Instance.gameOver = false;
         Time.timeScale = 1f;
+        GameManager.Instance.distanciaDeLaRonda = 0;
     }
 
     public void GameOver()
     {
         if(GameManager.Instance.gameOver == true)
         {
-            gameoverMenu.SetActive(true);
-            Time.timeScale = 0f;
-            tiempoRonda.text = $"Tiempo: {GameManager.Instance.tiempoDeLaRonda}";
-            mejorTiempo.text = $"Mejor Tiempo: {GameManager.Instance.mejorTiempo}";
             if (GameManager.Instance.tiempoDeLaRonda > GameManager.Instance.mejorTiempo)
             {
                 GameManager.Instance.mejorTiempo = GameManager.Instance.tiempoDeLaRonda;
             }
+
+            if (GameManager.Instance.distanciaDeLaRonda > GameManager.Instance.mejorDistancia)
+            {
+                GameManager.Instance.mejorDistancia = GameManager.Instance.distanciaDeLaRonda;
+            }
+            gameoverMenu.SetActive(true);
+            Time.timeScale = 0f;
+            tiempoRonda.text = $"Tiempo: {GameManager.Instance.tiempoDeLaRonda}";
+            mejorTiempo.text = $"Mejor Tiempo: {GameManager.Instance.mejorTiempo}";
+            distanciaRonda.text = $"Altura: {GameManager.Instance.distanciaDeLaRonda}m";
+            mejorDistancia.text = $"Mejor Altura: {GameManager.Instance.mejorDistancia}m";
+
+
         }
     }
 
     public void ExitToMenu()
     {
+        GameManager.Instance.distanciaDeLaRonda = 0;
+        Time.timeScale = 1f;
         Debug.Log("SaliendoAlmenu");
     }
 }

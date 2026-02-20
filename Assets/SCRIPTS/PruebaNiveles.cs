@@ -62,7 +62,7 @@ public class PruebaNiveles : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             oB.SpawnFromPool("Enemigo", floorSpawns[i].position);
-            Debug.Log($"Punto de spawn {i}: {floorSpawns[i].position}");
+            //Debug.Log($"Punto de spawn {i}: {floorSpawns[i].position}");
         }
     }
 

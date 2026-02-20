@@ -105,6 +105,7 @@ public class AbilityManager : MonoBehaviour
         {
             timer = abilityChangeTimer * durationMultiplier;
             GameManager.Instance.gemasTotales -= gemsToExtend;
+            gemsToExtend *= 2;
         }
     }
 

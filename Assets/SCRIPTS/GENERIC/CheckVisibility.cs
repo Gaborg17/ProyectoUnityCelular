@@ -4,6 +4,7 @@ using System.Linq;
 
 public class CheckVisibility : MonoBehaviour
 {
+    
     [SerializeField] private float visibleDistance;
     public bool IsVisible()
     {
