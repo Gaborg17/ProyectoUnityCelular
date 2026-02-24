@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver = false;
 
-
+    public int spriteID;
 
 
 

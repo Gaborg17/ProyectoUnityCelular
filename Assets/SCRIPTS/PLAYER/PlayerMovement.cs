@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D.Animation;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private CheckGround checkGround;
     private CheckVisibility checkVisibility;
+    private PlayerAnimManager animManager;
 
     [SerializeField] float joystickThreshold = 0.9f;
 
@@ -32,15 +34,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 distanceZero;
 
-
+    [SerializeField]private SpriteLibrary spriteLibrary;
+    [SerializeField]private SpriteLibraryAsset[] spriteLibraryAssets;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         checkGround = GetComponent<CheckGround>();
         checkVisibility = GetComponent<CheckVisibility>();
+        animManager = GetComponent<PlayerAnimManager>();
         actualSpeed = walkSpeed;
         distanceZero = transform.position;
+        spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[GameManager.Instance.spriteID];
     }
 
 
@@ -80,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canJump = true;
             tryJump = false;
+            animManager.Jump();
         }
 
 
@@ -88,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce * 1.1f, ForceMode.Impulse);
             canJump = false;
+            animManager.Jump();
         }
     }
 
@@ -124,6 +131,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void Animations()
+    {
+        animManager.Run(moveVector.x);
+        animManager.Fall(checkGround.IsGrounded());
+    }
     private void moveCameraUp()
     {
         Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
@@ -158,6 +170,7 @@ private void FixedUpdate()
         OutOfRangeCheck();
         moveCameraUp();
         UpdateDistance();
+        Animations();
     }
 
     private void OutOfRangeCheck()

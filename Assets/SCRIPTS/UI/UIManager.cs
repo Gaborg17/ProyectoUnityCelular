@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     {
         
         restart?.Invoke();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Game");
         GameManager.Instance.gameOver = false;
         Time.timeScale = 1f;
         GameManager.Instance.distanciaDeLaRonda = 0;
@@ -107,6 +107,8 @@ public class UIManager : MonoBehaviour
 
     public void ExitToMenu()
     {
+        SceneManager.LoadScene("MenuPrincipal");
+        GameManager.Instance.gameOver = false;
         GameManager.Instance.distanciaDeLaRonda = 0;
         Time.timeScale = 1f;
         Debug.Log("SaliendoAlmenu");

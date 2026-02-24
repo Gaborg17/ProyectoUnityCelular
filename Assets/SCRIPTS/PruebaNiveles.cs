@@ -29,7 +29,10 @@ public class PruebaNiveles : MonoBehaviour
 
 
     }
-
+    private void OnDisable()
+    {
+        enemiesSpawned = false;
+    }
     private void Update()
     {
         if (visibility.InFrame() && enemiesSpawned == false)

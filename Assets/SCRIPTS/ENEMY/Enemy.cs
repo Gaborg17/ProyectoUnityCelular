@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
         targetPosition = player;
+        frozen = false;
+        mindControl = false;
     }
 
 
