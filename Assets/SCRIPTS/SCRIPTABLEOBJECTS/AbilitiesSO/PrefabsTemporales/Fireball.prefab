@@ -156,6 +156,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4526534998314511761}
+  - {fileID: 6705082157907932349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3957618873552695661
@@ -165,7 +166,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7620451676068385654}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &501945128014638152
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -272,3 +273,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySO: {fileID: 11400000, guid: 53ce9398dc7a65a4bacd6eda6f4cf625, type: 2}
+--- !u!1001 &5490371403318532444
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1068582689244572048}
+    m_Modifications:
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304911362406126656, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+      propertyPath: m_Name
+      value: Fuego Ataque
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+--- !u!4 &6705082157907932349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1242020434332544481, guid: 98c0d5fb2f2349b42b07f2e8e71fef6d, type: 3}
+  m_PrefabInstance: {fileID: 5490371403318532444}
+  m_PrefabAsset: {fileID: 0}
