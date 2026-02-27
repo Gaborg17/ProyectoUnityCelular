@@ -9,10 +9,12 @@ public class ProjectileAbilitySO : AbilitySO
     public float speed;
     public float shootAngle;
 
+    
+
 
     public override void Activate(Transform user, int direction)
     {
-            GameObject projectile = Instantiate(projectilePrefab, user.position, user.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, user.position, user.transform.parent.localRotation);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
             rb.AddForce(direction * Vector3.right * speed, ForceMode.Impulse);

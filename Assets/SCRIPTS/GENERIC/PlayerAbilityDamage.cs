@@ -5,7 +5,8 @@ public class PlayerAbilityDamage : MonoBehaviour
 
     
     [SerializeField] private AbilitySO abilitySO;
-
+    [SerializeField] private LayerMask maskToInteract;
+    [SerializeField] private float range;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -15,11 +16,20 @@ public class PlayerAbilityDamage : MonoBehaviour
             switch (abilitySO.abilityName)
             {
                 case "Fireball":
-                    other.GetComponent<IDamageable>().GetDamaged(abilitySO.damage);
+
+                    foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
+                    {
+                        if(collider.gameObject.CompareTag("Enemy"))
+                        collider.GetComponent<IDamageable>().GetDamaged(abilitySO.damage);
+                    }
                     Destroy(this.gameObject);
                     break;
-                case "Congelar":
-                    other.GetComponent<Enemy>().frozen = true;
+                case "Congelar":                  
+
+                    foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
+                    {
+                        collider.GetComponent<Enemy>().frozen = true;
+                    }
                     Destroy(this.gameObject);
                     break;
                 case "Control Mental":
@@ -36,6 +46,13 @@ public class PlayerAbilityDamage : MonoBehaviour
                     sword.enabled = false;
                     break;
 
+            }
+
+            if(abilitySO.collisionParticle != null)
+            {
+                GameObject particle = Instantiate(abilitySO.collisionParticle,this.transform.position, this.transform.rotation);
+
+                Destroy(particle.gameObject, 1f);
             }
 
         }

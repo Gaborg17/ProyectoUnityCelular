@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private EnemySO enemySO;
+    public EnemySO enemySO;
     private float health;
     private float attackCooldown;
 
@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public bool frozen;
     public bool mindControl;
+    public bool followingTarget = false;
 
     private ReturnToPool poolReturn;
     private CheckVisibility checkVisibility;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         rbE = GetComponent<Rigidbody>();
+        rbE.isKinematic = false;
         rbE.linearVelocity = Vector3.zero;
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
@@ -41,9 +43,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Update()
     {
+
         OutOfRangeCheck();
         if (!frozen)
         {
+            rbE.isKinematic = false;
+            Flip();
             MoveToTarget();
 
             if (mindControl)
@@ -54,17 +59,40 @@ public class Enemy : MonoBehaviour, IDamageable
 
         }
 
+        else if (frozen)
+        {
+            rbE.isKinematic = true;
+        }
+
     }
     private void MoveToTarget()
     {
         if(targetPosition != null && targetPosition.position.y >= (transform.position.y - 2))
         {
+            followingTarget = true;
             Vector3 newPosition = newPosition = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.position.x,0,0), enemySO.movementSpeed * Time.deltaTime);
             rbE.MovePosition(newPosition);
+
+
+        }
+        else
+        {
+            followingTarget = false;
         }
 
     }
 
+    private void Flip()
+    {
+        if (targetPosition.position.x >= transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (targetPosition.position.x < transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
 
     private void UnderMindControl()
     {
@@ -100,7 +128,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
 
 
-    public void GetDamaged(float damage)
+    public void GetDamaged(int damage)
     {
         health -= damage;
         if (health <= 0)

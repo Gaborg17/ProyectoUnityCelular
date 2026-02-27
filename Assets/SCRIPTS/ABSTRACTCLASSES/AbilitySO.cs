@@ -6,8 +6,10 @@ public abstract class AbilitySO : ScriptableObject
     public string abilityName;
     public Sprite icon;
     public float cooldown;
-    public float damage;
+    public int damage;
     public float playerSpeedMultiplier;
+    public GameObject collisionParticle;
+
 
     public static bool isOnCooldown;
     public static float counter;
