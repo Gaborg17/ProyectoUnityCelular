@@ -12,6 +12,7 @@ public class EnemyDamage : MonoBehaviour
             if(other.GetComponent<IDamageable>() != null)
             {
                 other.GetComponent<IDamageable>().GetDamaged(damage);
+                Debug.Log($"Dañando a {other.name}");
                 Destroy(this.gameObject);
             }
         }

@@ -5,6 +5,8 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
     [SerializeField] private int actualHealth = 5;
     [SerializeField] private int maxHealth;
 
+    public bool isProtected = false;
+
     private PlayerAnimManager animManager;
     private void Start()
     {
@@ -14,6 +16,11 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
 
     public void GetDamaged(int damage)
     {
+        if (isProtected == true)
+        {
+            return;
+        }
+
         actualHealth -= damage;
 
         if(actualHealth <= 0)

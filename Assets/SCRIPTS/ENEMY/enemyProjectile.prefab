@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8bcc6d360efd445b3988334f470323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagToCollide: 
-  damage: 0
+  tagToCollide: Player
+  damage: 2
 --- !u!65 &2788242301315382662
 BoxCollider:
   m_ObjectHideFlags: 0

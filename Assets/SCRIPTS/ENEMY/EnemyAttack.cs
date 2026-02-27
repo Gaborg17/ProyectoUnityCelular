@@ -99,8 +99,8 @@ public class EnemyAttack : MonoBehaviour
         GameObject projectile = Instantiate(attackPrefab, this.transform.position, this.transform.rotation);
         eDamage = projectile.GetComponent<EnemyDamage>();
         Rigidbody rbP = projectile.GetComponent<Rigidbody>();
-        Vector3 direction = (enemy.targetPosition.position - transform.position);
-        rbP.AddForce(Vector3.right * direction.x * attackForce, ForceMode.Acceleration);
+        float direction = Mathf.Sign(enemy.targetPosition.position.x - transform.position.x);
+        rbP.AddForce(Vector3.right * direction * attackForce, ForceMode.Acceleration);
 
         yield return new WaitForSeconds(cooldown);
         attackCoroutine = null;

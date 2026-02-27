@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         OutOfRangeCheck();

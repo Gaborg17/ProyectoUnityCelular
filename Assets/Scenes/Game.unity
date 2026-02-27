@@ -2205,7 +2205,7 @@ MonoBehaviour:
   timeBetweenIncrements: 60
   maxSpeed: 2.5
   speedMultiplier: 1.2
-  moveCamera: 1
+  moveCamera: 0
 --- !u!1 &392188676
 GameObject:
   m_ObjectHideFlags: 0
@@ -6354,6 +6354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actualHealth: 5
   maxHealth: 5
+  isProtected: 0
 --- !u!1 &990470025
 GameObject:
   m_ObjectHideFlags: 0
@@ -13692,10 +13693,6 @@ PrefabInstance:
     - target: {fileID: 2596093982391928939, guid: aa88023baad18ec40a3daa88b60fb8e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638442297343020794, guid: aa88023baad18ec40a3daa88b60fb8e1, type: 3}
-      propertyPath: attackForce
-      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7788304375552359168, guid: aa88023baad18ec40a3daa88b60fb8e1, type: 3}
       propertyPath: m_Name

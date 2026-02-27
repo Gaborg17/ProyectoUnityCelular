@@ -11,7 +11,12 @@ public class PlayerAbilityDamage : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            
+            if (abilitySO.collisionParticle != null)
+            {
+                GameObject particle = Instantiate(abilitySO.collisionParticle, this.transform.position, this.transform.rotation);
+
+                Destroy(particle.gameObject, 1f);
+            }
 
             switch (abilitySO.abilityName)
             {
@@ -24,13 +29,13 @@ public class PlayerAbilityDamage : MonoBehaviour
                     }
                     Destroy(this.gameObject);
                     break;
-                case "Congelar":                  
-
+                case "Congelar":
+                    Destroy(this.gameObject);
                     foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
                     {
-                        collider.GetComponent<Enemy>().frozen = true;
+                            collider.GetComponent<Enemy>().frozen = true;
                     }
-                    Destroy(this.gameObject);
+                    
                     break;
                 case "Control Mental":
                     other.GetComponent<Enemy>().mindControl = true;
@@ -38,6 +43,7 @@ public class PlayerAbilityDamage : MonoBehaviour
                     break;
                 case "Protect":
                     other.GetComponent<IDamageable>().GetDamaged(abilitySO.damage);
+
                     
                     break;
                 case "Sword":
@@ -48,12 +54,7 @@ public class PlayerAbilityDamage : MonoBehaviour
 
             }
 
-            if(abilitySO.collisionParticle != null)
-            {
-                GameObject particle = Instantiate(abilitySO.collisionParticle,this.transform.position, this.transform.rotation);
 
-                Destroy(particle.gameObject, 1f);
-            }
 
         }
     }
@@ -73,6 +74,15 @@ public class PlayerAbilityDamage : MonoBehaviour
                 Destroy(this.gameObject);
 
             }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(abilitySO.abilityName == "Protect")
+        {
+            PlayerHealthHandler pH = FindAnyObjectByType<PlayerHealthHandler>();
+            pH.isProtected = false;
         }
     }
 

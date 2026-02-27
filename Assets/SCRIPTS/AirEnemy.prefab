@@ -56,6 +56,7 @@ MonoBehaviour:
   targetPosition: {fileID: 0}
   frozen: 0
   mindControl: 0
+  followingTarget: 0
 --- !u!114 &5638442297343020794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ MonoBehaviour:
   attackDamage: 2
   cooldown: 2
   attackDistance: 4
-  attackForce: 200
+  attackForce: 800
   attackPrefab: {fileID: 2294233840465625704, guid: 825b09696f22146439883004d5813252, type: 3}
 --- !u!54 &6314014528656177930
 Rigidbody:
