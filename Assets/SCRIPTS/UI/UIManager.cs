@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI distanciaRonda;
     [SerializeField] private TextMeshProUGUI mejorDistancia;
 
-
+    [SerializeField] private RectMask2D healthBar;
+    [SerializeField] private float healthBarPadding;
 
 
     [SerializeField] private GameObject pauseMenu;
@@ -31,6 +33,23 @@ public class UIManager : MonoBehaviour
         GemCounterUpdate();
         GameOver();
         DistanceCounter();
+        HealthBarUpdate();
+    }
+
+
+    private void HealthBarUpdate()
+    {
+        if (healthBar != null)
+        {
+            PlayerHealthHandler playerHealthHandler = FindAnyObjectByType<PlayerHealthHandler>();
+
+            float valuePerHealth = (640 / playerHealthHandler.maxHealth);
+
+            healthBarPadding = 640 - valuePerHealth * playerHealthHandler.actualHealth;
+
+
+            healthBar.padding = new Vector4(0, 0, healthBarPadding, 0);
+        }
     }
 
 

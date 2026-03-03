@@ -33,6 +33,7 @@ public class PlayerAbilityDamage : MonoBehaviour
                     Destroy(this.gameObject);
                     foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
                     {
+                        if (collider.gameObject.CompareTag("Enemy"))
                             collider.GetComponent<Enemy>().frozen = true;
                     }
                     

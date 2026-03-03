@@ -16,3 +16,4 @@ MonoBehaviour:
   enemyHealth: 12
   type: 0
   movementSpeed: 4
+  detectionHeight: 2

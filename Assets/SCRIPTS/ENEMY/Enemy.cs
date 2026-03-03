@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -8,15 +9,18 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private Transform player;
     [SerializeField] private Rigidbody rbE;
+    [SerializeField] private bool death;
 
     public Transform targetPosition;
 
     public bool frozen;
+    [SerializeField] private GameObject freezeEffect;
     public bool mindControl;
     public bool followingTarget = false;
 
     private ReturnToPool poolReturn;
     private CheckVisibility checkVisibility;
+    private EnemyAnimationHandler eAnim;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -24,6 +28,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
         targetPosition = player;
+        eAnim = GetComponent<EnemyAnimationHandler>();
         checkVisibility = GetComponent<CheckVisibility>();
         poolReturn = GetComponent<ReturnToPool>();
     }
@@ -38,8 +43,13 @@ public class Enemy : MonoBehaviour, IDamageable
         targetPosition = player;
         frozen = false;
         mindControl = false;
+        death = false;
     }
 
+    private void OnDisable()
+    {
+        freezeEffect.SetActive(false);
+    }
 
     private void FixedUpdate()
     {
@@ -47,10 +57,11 @@ public class Enemy : MonoBehaviour, IDamageable
         OutOfRangeCheck();
         if (!frozen)
         {
+            
             rbE.isKinematic = false;
             Flip();
             MoveToTarget();
-
+            eAnim.MoveToTarget(followingTarget);
             if (mindControl)
             {
                 UnderMindControl();
@@ -61,13 +72,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
         else if (frozen)
         {
+            eAnim.Freeze(frozen);
             rbE.isKinematic = true;
+            freezeEffect.SetActive(true);
         }
 
     }
     private void MoveToTarget()
     {
-        if(targetPosition != null && targetPosition.position.y >= (transform.position.y - 2))
+        if(targetPosition != null && targetPosition.position.y >= (transform.position.y - enemySO.detectionHeight))
         {
             followingTarget = true;
             Vector3 newPosition = newPosition = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.position.x,0,0), enemySO.movementSpeed * Time.deltaTime);
@@ -124,7 +137,12 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
 
+    private void Animation()
+    {
+        
 
+
+    }
 
 
 
@@ -139,9 +157,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void OnDeath()
     {
-        poolReturn.Return();
-        ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
-        oP.SpawnFromPool("Gema", this.transform.position);
+        death = true;
+        eAnim.Death(death);
+        StartCoroutine(DeathDelay());
     }
 
     private void OutOfRangeCheck()
@@ -153,6 +171,14 @@ public class Enemy : MonoBehaviour, IDamageable
             oP.SpawnFromPool("Gema", this.transform.position);
         }
 
+    }
+
+    private IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(.6f);
+        poolReturn.Return();
+        ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
+        oP.SpawnFromPool("Gema", this.transform.position);
     }
 
 }

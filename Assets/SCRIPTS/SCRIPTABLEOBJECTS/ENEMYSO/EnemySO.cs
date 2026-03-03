@@ -7,6 +7,7 @@ public class EnemySO : ScriptableObject
     public float enemyHealth;
     public TypeOfEnemy type;
     public float movementSpeed;
+    public int detectionHeight;
 
     public enum TypeOfEnemy
     {

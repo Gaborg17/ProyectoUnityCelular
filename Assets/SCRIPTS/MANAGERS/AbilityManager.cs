@@ -9,6 +9,7 @@ public class AbilityManager : MonoBehaviour
     public AbilitySO[] availableAbilities;
 
     [SerializeField] private Image buttonSprite;
+    [SerializeField] private Image buttonSpriteImg;
 
     [SerializeField] private float abilityChangeTimer;
 
@@ -58,6 +59,7 @@ public class AbilityManager : MonoBehaviour
         timer = abilityChangeTimer;
         currentAbility = availableAbilities[RandomNumber()];
         buttonSprite.color = currentAbility.tempColor;
+        buttonSpriteImg.sprite = currentAbility.icon;
         abilitySpawn.gameObject.SetActive(false);
         if (!AbilitySO.isOnCooldown)
         {

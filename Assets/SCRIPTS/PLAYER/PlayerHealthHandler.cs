@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerHealthHandler : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int actualHealth = 5;
-    [SerializeField] private int maxHealth;
+    public int actualHealth = 5;
+    public int maxHealth;
 
     public bool isProtected = false;
 

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SwordA
   m_EditorClassIdentifier: 
   abilityName: Sword
-  icon: {fileID: 0}
+  icon: {fileID: 6024926340767291973, guid: 3af831d3f9a87704a8bd11c0f9c6d382, type: 3}
   cooldown: 0.1
   damage: 4
   playerSpeedMultiplier: 1
+  collisionParticle: {fileID: 0}
   tempColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

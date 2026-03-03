@@ -15,6 +15,7 @@ public class EnemyAttack : MonoBehaviour
     private EnemySO enemySO;
 
     private EnemyDamage eDamage;
+    private EnemyAnimationHandler eAnim;
 
     private Coroutine attackCoroutine;
 
@@ -23,6 +24,7 @@ public class EnemyAttack : MonoBehaviour
         enemy = GetComponent<Enemy>();
         enemySO = enemy.enemySO;
         eDamage = attackPrefab.GetComponent<EnemyDamage>();
+        eAnim = GetComponent<EnemyAnimationHandler>();
         
     }
 
@@ -47,6 +49,7 @@ public class EnemyAttack : MonoBehaviour
                 break;
             case EnemySO.TypeOfEnemy.LandEnemy:
                 if (attackCoroutine == null)
+
                     attackCoroutine = StartCoroutine(MeleeAttack());
                 break;
         }
@@ -89,7 +92,7 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator MeleeAttack()
     {
-        attackPrefab.SetActive(true);
+        eAnim.Attacking();
         yield return new WaitForSeconds(cooldown);
         attackCoroutine = null;
     }
@@ -100,6 +103,7 @@ public class EnemyAttack : MonoBehaviour
         eDamage = projectile.GetComponent<EnemyDamage>();
         Rigidbody rbP = projectile.GetComponent<Rigidbody>();
         float direction = Mathf.Sign(enemy.targetPosition.position.x - transform.position.x);
+        eAnim.Attacking();
         rbP.AddForce(Vector3.right * direction * attackForce, ForceMode.Acceleration);
 
         yield return new WaitForSeconds(cooldown);
