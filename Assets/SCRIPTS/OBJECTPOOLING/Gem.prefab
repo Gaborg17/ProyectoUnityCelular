@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db37aa1d3c54d4541b8422bf8bd45b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemValue: 8
+  gemValue: 5
+  probabilityToHeal: 5
 --- !u!1 &6941236231034754021
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,8 +35,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
+        
         rbE = GetComponent<Rigidbody>();
         rbE.isKinematic = false;
+        rbE.WakeUp();
         rbE.linearVelocity = Vector3.zero;
         health = enemySO.enemyHealth;
         attackCooldown = enemySO.attackCooldown;
@@ -44,11 +46,16 @@ public class Enemy : MonoBehaviour, IDamageable
         frozen = false;
         mindControl = false;
         death = false;
+        freezeEffect.SetActive(false);
+        followingTarget = false;
+        targetPosition = player;
     }
 
     private void OnDisable()
     {
         freezeEffect.SetActive(false);
+        targetPosition = null;
+        transform.position = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -83,20 +90,28 @@ public class Enemy : MonoBehaviour, IDamageable
         if(targetPosition != null && targetPosition.position.y >= (transform.position.y - enemySO.detectionHeight))
         {
             followingTarget = true;
-            Vector3 newPosition = newPosition = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.position.x,0,0), enemySO.movementSpeed * Time.deltaTime);
-            rbE.MovePosition(newPosition);
+            //Vector3 newPosition = newPosition = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.position.x,0,0), enemySO.movementSpeed * Time.deltaTime);
+            //rbE.MovePosition(newPosition);
 
+            Vector3 direction = new Vector3(targetPosition.position.x - transform.position.x, 0, 0).normalized;
+            rbE.linearVelocity = new Vector3(direction.x * enemySO.movementSpeed, rbE.linearVelocity.y, 0);
 
         }
         else
         {
             followingTarget = false;
+            rbE.linearVelocity = new Vector3(0, rbE.linearVelocity.y, 0);
         }
 
     }
 
     private void Flip()
     {
+        if(targetPosition == null)
+        {
+            return;
+        }
+
         if (targetPosition.position.x >= transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -159,6 +174,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         death = true;
         eAnim.Death(death);
+        ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
+        oP.SpawnFromPool("Gema", this.transform.position);
         StartCoroutine(DeathDelay());
     }
 
@@ -177,8 +194,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(.6f);
         poolReturn.Return();
-        ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
-        oP.SpawnFromPool("Gema", this.transform.position);
+
     }
 
 }

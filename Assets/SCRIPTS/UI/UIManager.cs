@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameoverMenu;
+    [SerializeField] private GameObject reviveMenu;
 
     public UnityEvent restart;
     public bool inPlay;

@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 2
   cooldown: 2
-  attackDistance: 4
+  attackDistance: 5
   attackForce: 800
   attackPrefab: {fileID: 2294233840465625704, guid: 825b09696f22146439883004d5813252, type: 3}
 --- !u!54 &6314014528656177930

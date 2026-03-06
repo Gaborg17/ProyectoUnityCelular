@@ -5,6 +5,9 @@ public class EnemyDamage : MonoBehaviour
     public string tagToCollide;
     public int damage;
 
+    [SerializeField]private AttackType typeAttack;
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(tagToCollide))
@@ -13,15 +16,26 @@ public class EnemyDamage : MonoBehaviour
             {
                 other.GetComponent<IDamageable>().GetDamaged(damage);
                 Debug.Log($"Dañando a {other.name}");
-                Destroy(this.gameObject);
+
+
+                
             }
         }
 
         else if (other.CompareTag("Ground"))
         {
-            Destroy(this.gameObject);
+            if (typeAttack == AttackType.Air)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
+    }
+
+
+    private enum AttackType
+    {
+        Melee, Air
     }
 
 }

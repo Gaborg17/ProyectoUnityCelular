@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagToCollide: Player
   damage: 2
+  typeAttack: 1
 --- !u!65 &2788242301315382662
 BoxCollider:
   m_ObjectHideFlags: 0

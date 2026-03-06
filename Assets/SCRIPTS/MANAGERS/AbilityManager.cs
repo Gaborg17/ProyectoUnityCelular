@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class AbilityManager : MonoBehaviour
 {
     [SerializeField] private AbilitySO currentAbility;
+    [SerializeField] private AbilitySO nextAbility;
 
     public AbilitySO[] availableAbilities;
 
@@ -56,8 +57,10 @@ public class AbilityManager : MonoBehaviour
     
     public IEnumerator ChangeAbility()
     {
+        currentAbility = nextAbility;
+        nextAbility = availableAbilities[RandomNumber()];
         timer = abilityChangeTimer;
-        currentAbility = availableAbilities[RandomNumber()];
+        
         buttonSprite.color = currentAbility.tempColor;
         buttonSpriteImg.sprite = currentAbility.icon;
         abilitySpawn.gameObject.SetActive(false);
@@ -71,6 +74,7 @@ public class AbilityManager : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
+        
         StartCoroutine(ChangeAbility());
     }
 

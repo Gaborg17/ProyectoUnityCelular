@@ -13,6 +13,11 @@ public class CameraMovement : MonoBehaviour
 
     public bool moveCamera = true;
 
+    [SerializeField]private GameObject fondo;
+    [SerializeField]
+    private float raisingSpeedFondo;
+
+
     private void Start()
     {
         StartCoroutine(IncrementSpeed());
@@ -20,6 +25,7 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         UpwardsMovement();
+        MoveBG();
     }
 
     private void UpwardsMovement()
@@ -41,5 +47,10 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+
+    private void MoveBG()
+    {
+        fondo.transform.Translate(Vector3.up * raisingSpeedFondo * Time.deltaTime, Space.World);
+    }
 
 }
