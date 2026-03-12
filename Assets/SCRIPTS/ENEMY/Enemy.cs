@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float attackCooldown;
 
     [SerializeField] private Transform player;
+    [SerializeField] private BoxCollider cEnemy;
     [SerializeField] private Rigidbody rbE;
     [SerializeField] private bool death;
 
@@ -31,11 +32,13 @@ public class Enemy : MonoBehaviour, IDamageable
         eAnim = GetComponent<EnemyAnimationHandler>();
         checkVisibility = GetComponent<CheckVisibility>();
         poolReturn = GetComponent<ReturnToPool>();
+        cEnemy = GetComponent<BoxCollider>();
     }
 
     private void OnEnable()
     {
-        
+        cEnemy = GetComponent<BoxCollider>();
+        cEnemy.enabled = true;
         rbE = GetComponent<Rigidbody>();
         rbE.isKinematic = false;
         rbE.WakeUp();
@@ -62,7 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
 
         OutOfRangeCheck();
-        if (!frozen)
+        if (!frozen && !death)
         {
             
             rbE.isKinematic = false;
@@ -82,6 +85,7 @@ public class Enemy : MonoBehaviour, IDamageable
             eAnim.Freeze(frozen);
             rbE.isKinematic = true;
             freezeEffect.SetActive(true);
+            cEnemy.enabled = false;
         }
 
     }
@@ -174,6 +178,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         death = true;
         eAnim.Death(death);
+        rbE.isKinematic = true;
+        cEnemy.enabled = false;
         ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
         oP.SpawnFromPool("Gema", this.transform.position);
         StartCoroutine(DeathDelay());

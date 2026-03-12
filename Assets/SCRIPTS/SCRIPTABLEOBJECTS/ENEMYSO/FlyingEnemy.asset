@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlyingEnemy
   m_EditorClassIdentifier: 
   attackCooldown: 2
-  enemyHealth: 12
+  enemyHealth: 1
   type: 1
   movementSpeed: 2
   detectionHeight: 8

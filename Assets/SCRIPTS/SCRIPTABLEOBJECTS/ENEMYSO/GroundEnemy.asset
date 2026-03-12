@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GroundEnemy
   m_EditorClassIdentifier: 
   attackCooldown: 1
-  enemyHealth: 12
+  enemyHealth: 1
   type: 0
   movementSpeed: 3
   detectionHeight: 1

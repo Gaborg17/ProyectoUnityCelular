@@ -7,6 +7,12 @@ public class EnemyDamage : MonoBehaviour
 
     [SerializeField]private AttackType typeAttack;
 
+    private CheckVisibility checkVisibility;
+
+    private void Start()
+    {
+        checkVisibility = GetComponent<CheckVisibility>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,8 +23,11 @@ public class EnemyDamage : MonoBehaviour
                 other.GetComponent<IDamageable>().GetDamaged(damage);
                 Debug.Log($"Dañando a {other.name}");
 
+                if (typeAttack == AttackType.Air)
+                {
+                    Destroy(this.gameObject);
+                }
 
-                
             }
         }
 
@@ -32,6 +41,16 @@ public class EnemyDamage : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(checkVisibility != null)
+        {
+            if (!checkVisibility.IsVisible())
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
     private enum AttackType
     {

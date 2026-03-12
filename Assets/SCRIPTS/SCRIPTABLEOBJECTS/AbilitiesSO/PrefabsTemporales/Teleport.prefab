@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 7558287821700776140}
   - component: {fileID: -4004243208085790503}
   - component: {fileID: 5830593616999718462}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,3 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySO: {fileID: 11400000, guid: c1630a49ea2573f42ae67bf22e578456, type: 2}
+  maskToInteract:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 0

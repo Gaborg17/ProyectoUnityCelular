@@ -1,5 +1,4 @@
-using System;
-using System.Net;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.Animation;
@@ -34,8 +33,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 distanceZero;
 
-    [SerializeField]private SpriteLibrary spriteLibrary;
-    [SerializeField]private SpriteLibraryAsset[] spriteLibraryAssets;
+    [SerializeField] private SpriteLibrary spriteLibrary;
+    [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
+
+    private Coroutine doubleJump;
+    private Coroutine resetJump;
+
+
+    [SerializeField] private float jumpResetTime;
+    [SerializeField] private float doubleJumpDelay;
 
     private void Start()
     {
@@ -64,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
         if (checkGround.IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
+            if (tryJump == false && wasAboveThreshold)
+            {
+                if (resetJump == null)
+                    resetJump = StartCoroutine(ResetJump());
+            }
         }
 
         else
@@ -85,6 +96,12 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canJump = true;
             tryJump = false;
+            if (resetJump != null)
+            {
+                StopCoroutine(resetJump);
+
+            }
+            resetJump = null;
             animManager.Jump();
         }
 
@@ -92,9 +109,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveVector.y > 0.98f && !checkGround.IsGrounded() && canJump == true)
         {
-            rb.AddForce(Vector3.up * jumpForce * 1.1f, ForceMode.Impulse);
-            canJump = false;
-            animManager.Jump();
+            if (doubleJump == null)
+            {
+                doubleJump = StartCoroutine(DoubleJump());
+            }
         }
     }
 
@@ -154,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         distance = (int)Mathf.Max(0f, distance);
 
-        if(distance > GameManager.Instance.distanciaDeLaRonda)
+        if (distance > GameManager.Instance.distanciaDeLaRonda)
         {
             GameManager.Instance.distanciaDeLaRonda = distance;
         }
@@ -162,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         return GameManager.Instance.distanciaDeLaRonda;
     }
 
-private void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
         Jump();
@@ -181,5 +199,23 @@ private void FixedUpdate()
             Debug.Log("Fuera de Rango");
         }
 
+    }
+
+
+
+    private IEnumerator DoubleJump()
+    {
+        yield return new WaitForSeconds(doubleJumpDelay);
+        rb.AddForce(Vector3.up * jumpForce * 1.1f, ForceMode.Impulse);
+        canJump = false;
+        animManager.Jump();
+        doubleJump = null;
+    }
+
+
+    private IEnumerator ResetJump()
+    {
+        yield return new WaitForSeconds(jumpResetTime);
+        tryJump = true;
     }
 }
