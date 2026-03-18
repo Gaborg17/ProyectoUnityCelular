@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,20 @@ public class AbilityManager : MonoBehaviour
 
     [SerializeField] private Image buttonSprite;
     [SerializeField] private Image buttonSpriteImg;
+    
+    [SerializeField] private Image nButtonSprite;
+    [SerializeField] private Image nButtonSpriteImg;
+
+
+    [SerializeField] private Image timerImg;
 
     [SerializeField] private float abilityChangeTimer;
 
     [SerializeField]private Transform abilitySpawn;
+
+
+    [SerializeField] private TextMeshProUGUI priceCA;
+    [SerializeField] private TextMeshProUGUI priceEA;
 
     private GameObject player;
     private PlayerMovement pM;
@@ -22,8 +33,8 @@ public class AbilityManager : MonoBehaviour
     public float timer;
     public float durationMultiplier;
 
-    [SerializeField] private int gemsToChange;
-    [SerializeField] private int gemsToExtend;
+    public int gemsToChange;
+    public int gemsToExtend;
     private void OnValidate()
     {
         buttonSprite.color = currentAbility.tempColor;
@@ -34,10 +45,16 @@ public class AbilityManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         pM = player.GetComponent<PlayerMovement>();
         StartCoroutine(ChangeAbility());
+        priceCA.text = gemsToChange.ToString();
+        priceEA.text = gemsToExtend.ToString();
     }
 
     private void Update()
     {
+        if (currentAbility.name == "ShieldA" && !AbilitySO.isOnCooldown)
+        {
+            UseActiveAbility();
+        }
 
     }
     public void UseActiveAbility()
@@ -58,20 +75,29 @@ public class AbilityManager : MonoBehaviour
     public IEnumerator ChangeAbility()
     {
         currentAbility = nextAbility;
+
         nextAbility = availableAbilities[RandomNumber()];
         timer = abilityChangeTimer;
         
         buttonSprite.color = currentAbility.tempColor;
         buttonSpriteImg.sprite = currentAbility.icon;
+        
+        nButtonSprite.color = nextAbility.tempColor;
+        nButtonSpriteImg.sprite = nextAbility.icon;
         abilitySpawn.gameObject.SetActive(false);
         if (!AbilitySO.isOnCooldown)
         {
             pM.actualSpeed = pM.walkSpeed;
         }
 
+
+
         while (timer > 0)
         {
+
+
             timer -= Time.deltaTime;
+            timerImg.fillAmount = timer/10;
             yield return null;
         }
         
@@ -99,6 +125,7 @@ public class AbilityManager : MonoBehaviour
         {
             timer = 0;
             GameManager.Instance.gemasTotales -= gemsToChange;
+            priceCA.text = gemsToChange.ToString();
         }
         
     }
@@ -112,6 +139,7 @@ public class AbilityManager : MonoBehaviour
             timer = abilityChangeTimer * durationMultiplier;
             GameManager.Instance.gemasTotales -= gemsToExtend;
             gemsToExtend *= 2;
+            priceEA.text = gemsToExtend.ToString();
         }
     }
 

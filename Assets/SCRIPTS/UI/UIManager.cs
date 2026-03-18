@@ -59,6 +59,8 @@ public class UIManager : MonoBehaviour
         gemCounter.text = GameManager.Instance.gemasTotales.ToString();
     }
 
+
+
     private IEnumerator GameTimer()
     {
         float time = 0;
