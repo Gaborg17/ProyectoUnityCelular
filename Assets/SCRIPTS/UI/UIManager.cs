@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        RewardsSystem.Instance.AddDistance(GameManager.Instance.distanciaDeLaRonda);
+        
         restart?.Invoke();
         SceneManager.LoadScene("Game");
         GameManager.Instance.gameOver = false;

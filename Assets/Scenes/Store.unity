@@ -258,7 +258,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46721800}
   m_CullTransparentMesh: 1
---- !u!1 &64840133
+--- !u!1 &134047980
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,72 +266,67 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 64840135}
-  - component: {fileID: 64840134}
+  - component: {fileID: 134047981}
+  - component: {fileID: 134047982}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Logros
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &64840134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64840133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61326d1617241d4ca68a55114073fe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemasDeRonda: 0
-  gemasParaRevivir: 0
-  storeCoins: 0
-  gemasTotales: 0
-  enemigosDerrotados: 0
-  distanciaTotal: 0
-  tiempoDeLaRonda: 0
-  mejorTiempo: 0
-  distanciaDeLaRonda: 0
-  mejorDistancia: 0
-  gameOver: 0
-  showRevive: 0
-  spriteID: 0
-  storeItems:
-  - itemObjectID: 0
-    isPurchased: 1
-    priceToPurchase: 0
-    spriteAsset: {fileID: 7108339969198208228, guid: afa2889c9336e664cbbb5d4cedc74c62, type: 3}
-  - itemObjectID: 1
-    isPurchased: 0
-    priceToPurchase: 15
-    spriteAsset: {fileID: 7108339969198208228, guid: 82569c8aadae2054f9281e03ae1df36b, type: 3}
-  - itemObjectID: 2
-    isPurchased: 0
-    priceToPurchase: 20
-    spriteAsset: {fileID: 7108339969198208228, guid: 7fb06a94d62384840b6c3bfaa75afe27, type: 3}
-  - itemObjectID: 3
-    isPurchased: 0
-    priceToPurchase: 25
-    spriteAsset: {fileID: 7108339969198208228, guid: e58c401655f95c843aeead6e22ea9354, type: 3}
---- !u!4 &64840135
+--- !u!4 &134047981
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64840133}
+  m_GameObject: {fileID: 134047980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1267.7799, y: 3.8754873, z: -206.18037}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 903188869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134047982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134047980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c1cb56910006648a78315c7fb165c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardRequirements:
+  - rewardType: 1
+    description: Elimina enemigos
+    initialTarget: 10
+    increment: 10
+    rewardProgress: 0
+    rewardAmount: 10
+    currentTarget: 0
+    completions: 0
+  - rewardType: 2
+    description: Recorre Distancia
+    initialTarget: 200
+    increment: 300
+    rewardProgress: 0
+    rewardAmount: 10
+    currentTarget: 0
+    completions: 0
+  - rewardType: 3
+    description: 
+    initialTarget: 0
+    increment: 0
+    rewardProgress: 0
+    rewardAmount: 100
+    currentTarget: 0
+    completions: 0
 --- !u!1 &139269663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1288,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879676541}
   m_CullTransparentMesh: 1
+--- !u!1 &903188867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903188869}
+  - component: {fileID: 903188868}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &903188868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903188867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61326d1617241d4ca68a55114073fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemasDeRonda: 0
+  gemasParaRevivir: 0
+  storeCoins: 0
+  gemasTotales: 0
+  enemigosDerrotados: 0
+  distanciaTotal: 0
+  tiempoDeLaRonda: 0
+  mejorTiempo: 0
+  distanciaDeLaRonda: 0
+  mejorDistancia: 0
+  gameOver: 0
+  showRevive: 0
+  spriteID: 0
+  storeItems:
+  - itemObjectID: 0
+    isPurchased: 1
+    priceToPurchase: 0
+    spriteAsset: {fileID: 7108339969198208228, guid: afa2889c9336e664cbbb5d4cedc74c62, type: 3}
+  - itemObjectID: 1
+    isPurchased: 0
+    priceToPurchase: 15
+    spriteAsset: {fileID: 7108339969198208228, guid: 82569c8aadae2054f9281e03ae1df36b, type: 3}
+  - itemObjectID: 2
+    isPurchased: 0
+    priceToPurchase: 20
+    spriteAsset: {fileID: 7108339969198208228, guid: 7fb06a94d62384840b6c3bfaa75afe27, type: 3}
+  - itemObjectID: 3
+    isPurchased: 0
+    priceToPurchase: 25
+    spriteAsset: {fileID: 7108339969198208228, guid: e58c401655f95c843aeead6e22ea9354, type: 3}
+--- !u!4 &903188869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903188867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1267.7799, y: 3.8754873, z: -206.18037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 134047981}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &945386413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2977,8 +3047,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 64840135}
   - {fileID: 1913951098}
   - {fileID: 744971108}
   - {fileID: 139269666}
   - {fileID: 945386413}
+  - {fileID: 903188869}
