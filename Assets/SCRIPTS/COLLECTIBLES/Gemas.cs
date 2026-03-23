@@ -49,12 +49,13 @@ public class Gemas : MonoBehaviour
 
         if (probability > probabilityToHeal)
         {
+            GameManager.Instance.gemasDeRonda += gemValue;
             GameManager.Instance.gemasTotales += gemValue;
         }
 
         else
         {
-            healthHandler.actualHealth += healthHandler.maxHealth;
+            healthHandler.actualHealth = healthHandler.maxHealth;
         }
     }
 

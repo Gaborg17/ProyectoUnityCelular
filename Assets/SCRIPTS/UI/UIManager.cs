@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         GemCounterUpdate();
+        ShowRevive();
         GameOver();
         DistanceCounter();
         HealthBarUpdate();
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
 
     private void GemCounterUpdate()
     {
-        gemCounter.text = GameManager.Instance.gemasTotales.ToString();
+        gemCounter.text = GameManager.Instance.gemasDeRonda.ToString();
     }
 
 
@@ -66,7 +67,7 @@ public class UIManager : MonoBehaviour
         float time = 0;
         while (inPlay)
         {
-            
+
             time += Time.deltaTime;
             GameManager.Instance.tiempoDeLaRonda = ((int)time);
             yield return null;
@@ -95,13 +96,46 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        
+        RewardsSystem.Instance.AddDistance(GameManager.Instance.distanciaDeLaRonda);
         restart?.Invoke();
         SceneManager.LoadScene("Game");
         GameManager.Instance.gameOver = false;
         Time.timeScale = 1f;
         GameManager.Instance.distanciaDeLaRonda = 0;
+        GameManager.Instance.gemasDeRonda = 0;
     }
+
+
+    public void ReviveButton()
+    {
+        if (GameManager.Instance.gemasDeRonda >= GameManager.Instance.gemasParaRevivir)
+        {
+            reviveMenu.SetActive(false);
+            Time.timeScale = 1f;
+            GameManager.Instance.showRevive = false;
+            CameraMovement camMov = FindAnyObjectByType<CameraMovement>();
+            camMov.SetToPlayerPos();
+        }
+    }
+
+    public void ShowRevive()
+    {
+        if(GameManager.Instance.showRevive == true)
+        {
+            reviveMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void GiveUp()
+    {
+        GameManager.Instance.showRevive = false;
+        RewardsSystem.Instance.AddDistance(GameManager.Instance.distanciaDeLaRonda);
+        reviveMenu.SetActive(false);
+
+        GameManager.Instance.gameOver = true;
+    }
+
 
     public void GameOver()
     {
@@ -116,13 +150,15 @@ public class UIManager : MonoBehaviour
             {
                 GameManager.Instance.mejorDistancia = GameManager.Instance.distanciaDeLaRonda;
             }
+
             gameoverMenu.SetActive(true);
             Time.timeScale = 0f;
+            
             tiempoRonda.text = $"Tiempo: {GameManager.Instance.tiempoDeLaRonda}";
             mejorTiempo.text = $"Mejor Tiempo: {GameManager.Instance.mejorTiempo}";
             distanciaRonda.text = $"Altura: {GameManager.Instance.distanciaDeLaRonda}m";
             mejorDistancia.text = $"Mejor Altura: {GameManager.Instance.mejorDistancia}m";
-
+            
 
         }
     }
@@ -132,6 +168,7 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MenuPrincipal");
         GameManager.Instance.gameOver = false;
         GameManager.Instance.distanciaDeLaRonda = 0;
+        GameManager.Instance.gemasDeRonda = 0;
         Time.timeScale = 1f;
         Debug.Log("SaliendoAlmenu");
     }

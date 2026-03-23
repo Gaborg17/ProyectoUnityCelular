@@ -180,6 +180,7 @@ public class Enemy : MonoBehaviour, IDamageable
         eAnim.Death(death);
         rbE.isKinematic = true;
         cEnemy.enabled = false;
+        RewardsSystem.Instance.AddEnemyKill(1);
         ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
         oP.SpawnFromPool("Gema", this.transform.position);
         StartCoroutine(DeathDelay());

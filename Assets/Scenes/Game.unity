@@ -862,7 +862,7 @@ MonoBehaviour:
   healthBarPadding: 0
   pauseMenu: {fileID: 1738132712}
   gameoverMenu: {fileID: 275245933}
-  reviveMenu: {fileID: 0}
+  reviveMenu: {fileID: 412672342}
   restart:
     m_PersistentCalls:
       m_Calls:
@@ -2497,8 +2497,8 @@ RectTransform:
   - {fileID: 1018521921}
   - {fileID: 100498648}
   - {fileID: 8760089}
-  - {fileID: 1848571830}
   - {fileID: 747650918}
+  - {fileID: 1848571830}
   - {fileID: 1667699287}
   - {fileID: 358793133}
   m_Father: {fileID: 68477224}
@@ -4254,7 +4254,8 @@ MonoBehaviour:
   timeBetweenIncrements: 60
   maxSpeed: 2.5
   speedMultiplier: 1.2
-  moveCamera: 0
+  delayOnStart: 1
+  moveCamera: 1
   fondo: {fileID: 1094966180}
   raisingSpeedFondo: -0.1
 --- !u!1 &338412154
@@ -9043,7 +9044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0.7058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -9754,8 +9755,8 @@ MonoBehaviour:
     prefabsToPool:
     - {fileID: 6231977218122940663, guid: b54359d26a85f7c458949412fa321ad7, type: 3}
     - {fileID: 7788304375552359168, guid: aa88023baad18ec40a3daa88b60fb8e1, type: 3}
-    poolSize: 30
-    maxInScene: 14
+    poolSize: 50
+    maxInScene: 25
     activeObjects: 0
     parentTransform: {fileID: 450695219}
   spawnFloor: {fileID: 1063831024}
@@ -11105,7 +11106,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 68477225}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ExitToMenu
+        m_MethodName: GiveUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11610,7 +11611,7 @@ MonoBehaviour:
   buttonSpriteImg: {fileID: 1667699289}
   nButtonSprite: {fileID: 2051425966}
   nButtonSpriteImg: {fileID: 1459604854}
-  timerImg: {fileID: 747650919}
+  timerImg: {fileID: 1848571832}
   abilityChangeTimer: 10
   abilitySpawn: {fileID: 1679602175}
   priceCA: {fileID: 97359278}
@@ -14887,7 +14888,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 68477225}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: ReviveButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17752,12 +17753,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61326d1617241d4ca68a55114073fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemasTotales: 100
+  gemasDeRonda: 0
+  gemasParaRevivir: 0
+  storeCoins: 0
+  gemasTotales: 0
+  enemigosDerrotados: 0
+  distanciaTotal: 0
   tiempoDeLaRonda: 0
   mejorTiempo: 0
   distanciaDeLaRonda: 0
   mejorDistancia: 0
   gameOver: 0
+  showRevive: 0
   spriteID: 0
 --- !u!4 &1303785300
 Transform:
@@ -25214,12 +25221,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -8357564192306964730, guid: 3af831d3f9a87704a8bd11c0f9c6d382, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

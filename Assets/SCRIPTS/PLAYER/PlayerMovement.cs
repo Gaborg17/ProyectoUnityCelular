@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!checkVisibility.IsVisible())
         {
-            GameManager.Instance.gameOver = true;
+            GameManager.Instance.showRevive = true;
             Debug.Log("Fuera de Rango");
         }
 

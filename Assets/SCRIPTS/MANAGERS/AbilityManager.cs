@@ -42,6 +42,7 @@ public class AbilityManager : MonoBehaviour
 
     private void Start()
     {
+        StopCooldown();
         player = GameObject.FindWithTag("Player");
         pM = player.GetComponent<PlayerMovement>();
         StartCoroutine(ChangeAbility());
@@ -121,10 +122,10 @@ public class AbilityManager : MonoBehaviour
 
     public void PayToChange()
     {
-        if(GameManager.Instance.gemasTotales >= gemsToChange)
+        if(GameManager.Instance.gemasDeRonda >= gemsToChange)
         {
             timer = 0;
-            GameManager.Instance.gemasTotales -= gemsToChange;
+            GameManager.Instance.gemasDeRonda -= gemsToChange;
             priceCA.text = gemsToChange.ToString();
         }
         
@@ -134,10 +135,10 @@ public class AbilityManager : MonoBehaviour
 
     public void PayToExtend()
     {
-        if (GameManager.Instance.gemasTotales >= gemsToExtend)
+        if (GameManager.Instance.gemasDeRonda >= gemsToExtend)
         {
             timer = abilityChangeTimer * durationMultiplier;
-            GameManager.Instance.gemasTotales -= gemsToExtend;
+            GameManager.Instance.gemasDeRonda -= gemsToExtend;
             gemsToExtend *= 2;
             priceEA.text = gemsToExtend.ToString();
         }

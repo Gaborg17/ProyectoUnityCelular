@@ -1630,57 +1630,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094561587}
   m_CullTransparentMesh: 1
---- !u!1 &1128349852
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1128349854}
-  - component: {fileID: 1128349853}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1128349853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128349852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61326d1617241d4ca68a55114073fe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemasTotales: 0
-  tiempoDeLaRonda: 0
-  mejorTiempo: 0
-  distanciaDeLaRonda: 0
-  mejorDistancia: 0
-  gameOver: 0
-  spriteID: 0
---- !u!4 &1128349854
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128349852}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1267.7799, y: 3.8754873, z: -206.18037}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149281510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,6 +2103,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 155799549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1217654924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217654925}
+  - component: {fileID: 1217654926}
+  m_Layer: 0
+  m_Name: Logros
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1217654925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217654924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1442473971}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1217654926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217654924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c1cb56910006648a78315c7fb165c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardRequirements:
+  - rewardType: 1
+    description: Elimina enemigos
+    initialTarget: 10
+    increment: 10
+    rewardProgress: 0
+    rewardAmount: 10
+    currentTarget: 0
+    completions: 0
+  - rewardType: 2
+    description: Recorre Distancia
+    initialTarget: 200
+    increment: 300
+    rewardProgress: 0
+    rewardAmount: 10
+    currentTarget: 0
+    completions: 0
+  - rewardType: 3
+    description: 
+    initialTarget: 0
+    increment: 0
+    rewardProgress: 0
+    rewardAmount: 100
+    currentTarget: 0
+    completions: 0
 --- !u!1 &1230349549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2683,81 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1471556323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1442473969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1442473971}
+  - component: {fileID: 1442473970}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1442473970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442473969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61326d1617241d4ca68a55114073fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemasDeRonda: 0
+  gemasParaRevivir: 0
+  storeCoins: 0
+  gemasTotales: 0
+  enemigosDerrotados: 0
+  distanciaTotal: 0
+  tiempoDeLaRonda: 0
+  mejorTiempo: 0
+  distanciaDeLaRonda: 0
+  mejorDistancia: 0
+  gameOver: 0
+  showRevive: 0
+  spriteID: 0
+  storeItems:
+  - itemObjectID: 0
+    isPurchased: 1
+    priceToPurchase: 0
+    spriteAsset: {fileID: 7108339969198208228, guid: afa2889c9336e664cbbb5d4cedc74c62, type: 3}
+  - itemObjectID: 1
+    isPurchased: 0
+    priceToPurchase: 15
+    spriteAsset: {fileID: 7108339969198208228, guid: 82569c8aadae2054f9281e03ae1df36b, type: 3}
+  - itemObjectID: 2
+    isPurchased: 0
+    priceToPurchase: 20
+    spriteAsset: {fileID: 7108339969198208228, guid: 7fb06a94d62384840b6c3bfaa75afe27, type: 3}
+  - itemObjectID: 3
+    isPurchased: 0
+    priceToPurchase: 25
+    spriteAsset: {fileID: 7108339969198208228, guid: e58c401655f95c843aeead6e22ea9354, type: 3}
+--- !u!4 &1442473971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442473969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1267.7799, y: 3.8754873, z: -206.18037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1217654925}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1471556322
 GameObject:
@@ -3795,7 +3888,7 @@ SceneRoots:
   - {fileID: 42265991}
   - {fileID: 936716455}
   - {fileID: 1189802103}
-  - {fileID: 1128349854}
   - {fileID: 2076912248}
   - {fileID: 155799549}
   - {fileID: 1471556323}
+  - {fileID: 1442473971}

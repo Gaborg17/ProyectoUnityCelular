@@ -9,6 +9,20 @@ public class PlayerAbilityDamage : MonoBehaviour
     [SerializeField] private float range;
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Walls") || other.CompareTag("Ground"))
+        {
+            switch (abilitySO.abilityName)
+            {
+                case "Protect":
+                    break;
+                case "Sword":
+                    break;
+                default:
+                    Destroy(this.gameObject);
+                    break;
+            }
+        }
+
         if (other.CompareTag("Enemy"))
         {
             if (abilitySO.collisionParticle != null)
@@ -83,7 +97,10 @@ public class PlayerAbilityDamage : MonoBehaviour
         if(abilitySO.abilityName == "Protect")
         {
             PlayerHealthHandler pH = FindAnyObjectByType<PlayerHealthHandler>();
-            pH.isProtected = false;
+            if(pH != null)
+            {
+                pH.isProtected = false;
+            }
         }
     }
 

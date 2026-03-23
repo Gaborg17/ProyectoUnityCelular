@@ -32,6 +32,7 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
 
     public void OnDeath()
     {
-        GameManager.Instance.gameOver = true;
+
+        GameManager.Instance.showRevive = true;
     }
 }
