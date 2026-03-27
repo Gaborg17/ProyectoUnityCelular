@@ -20,5 +20,5 @@ MonoBehaviour:
   collisionParticle: {fileID: 0}
   tempColor: {r: 1, g: 0.3726415, b: 0.8412704, a: 1}
   projectilePrefab: {fileID: 6887622133934976765, guid: b5f3c77d54befdc4ab5badeb3fc8e6fd, type: 3}
-  speed: 20
+  speed: 10
   shootAngle: 0
