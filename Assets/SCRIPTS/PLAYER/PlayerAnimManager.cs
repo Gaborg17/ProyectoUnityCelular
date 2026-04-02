@@ -34,15 +34,23 @@ public class PlayerAnimManager : MonoBehaviour
     {
         if (pAnim != null)
         {
-
+            pAnim.SetTrigger("isHit");
         }
     }
 
-    public void Death()
+    public void Death(bool isDead)
     {
         if (pAnim != null)
         {
+            pAnim.SetBool("isDead", isDead);
+        }
+    }
 
+    public void SwordAttack()
+    {
+        if (pAnim != null)
+        {
+            pAnim.SetTrigger("isSword");
         }
     }
 

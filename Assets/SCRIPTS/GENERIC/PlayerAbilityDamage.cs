@@ -79,6 +79,9 @@ public class PlayerAbilityDamage : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Walls"))
         {
+            GameObject particle = Instantiate(abilitySO.collisionParticle, this.transform.position, this.transform.rotation);
+
+            Destroy(particle.gameObject, 1f);
             Debug.Log("Collision");
             if(abilitySO.abilityName == "Teletransportacion")
             {
@@ -92,16 +95,5 @@ public class PlayerAbilityDamage : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if(abilitySO.abilityName == "Protect")
-        {
-            PlayerHealthHandler pH = FindAnyObjectByType<PlayerHealthHandler>();
-            if(pH != null)
-            {
-                pH.isProtected = false;
-            }
-        }
-    }
 
 }

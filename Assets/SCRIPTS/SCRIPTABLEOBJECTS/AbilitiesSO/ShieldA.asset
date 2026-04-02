@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Protect
   icon: {fileID: -7818412225669818230, guid: 3af831d3f9a87704a8bd11c0f9c6d382, type: 3}
-  cooldown: 10
+  cooldown: 1
   damage: 12
   playerSpeedMultiplier: 1.5
   collisionParticle: {fileID: 0}

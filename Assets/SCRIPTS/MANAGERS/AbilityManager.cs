@@ -12,7 +12,7 @@ public class AbilityManager : MonoBehaviour
 
     [SerializeField] private Image buttonSprite;
     [SerializeField] private Image buttonSpriteImg;
-    
+
     [SerializeField] private Image nButtonSprite;
     [SerializeField] private Image nButtonSpriteImg;
 
@@ -21,7 +21,8 @@ public class AbilityManager : MonoBehaviour
 
     [SerializeField] private float abilityChangeTimer;
 
-    [SerializeField]private Transform abilitySpawn;
+    [SerializeField] private Transform abilitySpawn;
+    
 
 
     [SerializeField] private TextMeshProUGUI priceCA;
@@ -29,6 +30,7 @@ public class AbilityManager : MonoBehaviour
 
     private GameObject player;
     private PlayerMovement pM;
+    private PlayerHealthHandler pH;
 
     public float timer;
     public float durationMultiplier;
@@ -43,6 +45,7 @@ public class AbilityManager : MonoBehaviour
     private void Start()
     {
         StopCooldown();
+        pH = FindAnyObjectByType<PlayerHealthHandler>();
         player = GameObject.FindWithTag("Player");
         pM = player.GetComponent<PlayerMovement>();
         StartCoroutine(ChangeAbility());
@@ -52,9 +55,22 @@ public class AbilityManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentAbility.name == "ShieldA" && !AbilitySO.isOnCooldown)
+        if (currentAbility.name == "ShieldA")
         {
-            UseActiveAbility();
+
+            if (pH != null)
+            {
+                pH.isProtected = true;
+            }
+        }
+
+        if (currentAbility.name != "ShieldA")
+        {
+
+            if (pH != null)
+            {
+                pH.isProtected = false;
+            }
         }
 
     }
@@ -72,20 +88,29 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    
+
     public IEnumerator ChangeAbility()
     {
+        AbilitySO.isOnCooldown = false;
         currentAbility = nextAbility;
+        int abiltyNum;
+        do
+        {
+            abiltyNum = RandomNumber();
+        }
+        while (availableAbilities[abiltyNum] == currentAbility);
 
-        nextAbility = availableAbilities[RandomNumber()];
+        nextAbility = availableAbilities[abiltyNum];
         timer = abilityChangeTimer;
-        
+
         buttonSprite.color = currentAbility.tempColor;
         buttonSpriteImg.sprite = currentAbility.icon;
-        
+
         nButtonSprite.color = nextAbility.tempColor;
         nButtonSpriteImg.sprite = nextAbility.icon;
-        abilitySpawn.gameObject.SetActive(false);
+       
+
+
         if (!AbilitySO.isOnCooldown)
         {
             pM.actualSpeed = pM.walkSpeed;
@@ -95,17 +120,16 @@ public class AbilityManager : MonoBehaviour
 
         while (timer > 0)
         {
-
-
             timer -= Time.deltaTime;
-            timerImg.fillAmount = timer/10;
+            timerImg.fillAmount = timer / 10;
             yield return null;
         }
-        
+
+
         StartCoroutine(ChangeAbility());
     }
 
-    
+
     private int RandomNumber()
     {
         int randomNum = Random.Range(0, availableAbilities.Length);
@@ -122,13 +146,14 @@ public class AbilityManager : MonoBehaviour
 
     public void PayToChange()
     {
-        if(GameManager.Instance.gemasDeRonda >= gemsToChange)
+        if (GameManager.Instance.gemasDeRonda >= gemsToChange)
         {
+            RewardsSystem.Instance.AddGemsSpent(gemsToChange);
             timer = 0;
             GameManager.Instance.gemasDeRonda -= gemsToChange;
             priceCA.text = gemsToChange.ToString();
         }
-        
+
     }
 
 
@@ -137,6 +162,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (GameManager.Instance.gemasDeRonda >= gemsToExtend)
         {
+            RewardsSystem.Instance.AddGemsSpent(gemsToExtend);
             timer = abilityChangeTimer * durationMultiplier;
             GameManager.Instance.gemasDeRonda -= gemsToExtend;
             gemsToExtend *= 2;

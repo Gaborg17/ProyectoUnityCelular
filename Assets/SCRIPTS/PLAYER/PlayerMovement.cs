@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SpriteLibrary spriteLibrary;
     [SerializeField] private SpriteLibraryAsset[] spriteLibraryAssets;
 
+    [SerializeField] private SpriteRenderer wandSprite;
+    [SerializeField] private Sprite[] wandSprites;
+
     private Coroutine doubleJump;
     private Coroutine resetJump;
 
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         actualSpeed = walkSpeed;
         distanceZero = transform.position;
         spriteLibrary.spriteLibraryAsset = spriteLibraryAssets[GameManager.Instance.spriteID];
+        wandSprite.sprite = wandSprites[GameManager.Instance.wandID];
     }
 
 

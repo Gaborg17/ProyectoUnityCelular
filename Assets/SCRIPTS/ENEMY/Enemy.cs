@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public bool frozen;
     [SerializeField] private GameObject freezeEffect;
+    [SerializeField] private GameObject hypnoEffect;
     public bool mindControl;
     public bool followingTarget = false;
 
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable
         mindControl = false;
         death = false;
         freezeEffect.SetActive(false);
+        hypnoEffect.SetActive(false);
         followingTarget = false;
         targetPosition = player;
     }
@@ -149,7 +151,9 @@ public class Enemy : MonoBehaviour, IDamageable
                 distance = curDistance;
             }
         }
+        hypnoEffect.SetActive(true);
 
+        StartCoroutine(DeathAfterHypnosis());
 
 
         targetPosition = closest?.transform;
@@ -202,6 +206,12 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(.6f);
         poolReturn.Return();
 
+    }
+
+    private IEnumerator DeathAfterHypnosis()
+    {
+        yield return new WaitForSeconds(5);
+        OnDeath();
     }
 
 }

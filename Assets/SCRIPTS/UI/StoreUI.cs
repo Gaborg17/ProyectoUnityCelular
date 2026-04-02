@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
 
@@ -12,17 +11,32 @@ public class StoreItem
     public int priceToPurchase;
     public SpriteLibraryAsset spriteAsset;
 }
+
+[System.Serializable]
+public class Wands
+{
+    public int itemObjectID;
+    public bool isPurchased;
+    public int priceToPurchase;
+    public Sprite spriteAsset;
+}
 public class StoreUI : MonoBehaviour
 {
     [SerializeField]private SpriteLibrary library;
+    [SerializeField]private SpriteRenderer sprite;
 
     [SerializeField] private TextMeshProUGUI coinCounter;
     [SerializeField] private TextMeshProUGUI[] prices;
+    [SerializeField] private TextMeshProUGUI[] wandPrices;
+
+
+    
 
     private void Start()
     {     
         library.spriteLibraryAsset = GameManager.Instance.storeItems[GameManager.Instance.spriteID].spriteAsset;
         SetPrices();
+        SetWandPrices();
     }
 
     private void Update()
@@ -55,6 +69,28 @@ public class StoreUI : MonoBehaviour
 
     }
 
+
+    public void SelectWand(int wandID)
+    {
+        if (GameManager.Instance.wandItem[wandID].isPurchased)
+        {
+            GameManager.Instance.wandID = wandID;
+            sprite.sprite = GameManager.Instance.wandItem[wandID].spriteAsset;
+        }
+
+        else if (!GameManager.Instance.wandItem[wandID].isPurchased)
+        {
+            if (GameManager.Instance.storeCoins >= GameManager.Instance.wandItem[wandID].priceToPurchase)
+            {
+                sprite.sprite = GameManager.Instance.wandItem[wandID].spriteAsset;
+                GameManager.Instance.spriteID = wandID;
+                GameManager.Instance.storeCoins -= GameManager.Instance.wandItem[wandID].priceToPurchase;
+                GameManager.Instance.wandItem[wandID].isPurchased = true;
+                wandPrices[wandID].gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void UpdateCoinCount()
     {
         coinCounter.text = GameManager.Instance.storeCoins.ToString();
@@ -74,6 +110,21 @@ public class StoreUI : MonoBehaviour
             if(GameManager.Instance.storeItems[i].isPurchased)
             {
                 prices[i].gameObject.SetActive(false);
+            }
+
+        }
+
+    }
+
+
+    private void SetWandPrices()
+    {
+        for (int i = 0; i < GameManager.Instance.wandItem.Length; i++)
+        {
+            wandPrices[i].text = GameManager.Instance.wandItem[i].priceToPurchase.ToString();
+            if (GameManager.Instance.storeItems[i].isPurchased)
+            {
+                wandPrices[i].gameObject.SetActive(false);
             }
 
         }

@@ -21,12 +21,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameoverMenu;
     [SerializeField] private GameObject reviveMenu;
+    [SerializeField] private GameObject settingsMenu;
 
     public UnityEvent restart;
     public bool inPlay;
 
+    private PlayerHealthHandler playerHealthHandler;
+
     private void Start()
     {
+        playerHealthHandler = FindAnyObjectByType<PlayerHealthHandler>();
         StartCoroutine(GameTimer());
     }
     private void Update()
@@ -43,11 +47,11 @@ public class UIManager : MonoBehaviour
     {
         if (healthBar != null)
         {
-            PlayerHealthHandler playerHealthHandler = FindAnyObjectByType<PlayerHealthHandler>();
+            
 
-            float valuePerHealth = (640 / playerHealthHandler.maxHealth);
+            float valuePerHealth = (float)playerHealthHandler.actualHealth/playerHealthHandler.maxHealth;
 
-            healthBarPadding = 640 - valuePerHealth * playerHealthHandler.actualHealth;
+            healthBarPadding = 640 * (1 - valuePerHealth);
 
 
             healthBar.padding = new Vector4(0, 0, healthBarPadding, 0);
@@ -103,6 +107,8 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.Instance.distanciaDeLaRonda = 0;
         GameManager.Instance.gemasDeRonda = 0;
+        RewardsSystem.Instance.AddPlayAmount(1);
+        
     }
 
 
@@ -110,7 +116,11 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.Instance.gemasDeRonda >= GameManager.Instance.gemasParaRevivir)
         {
+            RewardsSystem.Instance.AddGemsSpent(GameManager.Instance.gemasParaRevivir);
             reviveMenu.SetActive(false);
+            playerHealthHandler.actualHealth = playerHealthHandler.maxHealth;
+            PlayerAnimManager animMngr = FindAnyObjectByType<PlayerAnimManager>();
+            animMngr.Death(false);
             Time.timeScale = 1f;
             GameManager.Instance.showRevive = false;
             CameraMovement camMov = FindAnyObjectByType<CameraMovement>();
@@ -161,6 +171,12 @@ public class UIManager : MonoBehaviour
             
 
         }
+    }
+
+
+    public void OpenSettings()
+    {
+        settingsMenu.SetActive(true);
     }
 
     public void ExitToMenu()

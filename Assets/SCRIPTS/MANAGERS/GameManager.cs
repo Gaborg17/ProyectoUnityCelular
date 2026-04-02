@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
     public int storeCoins;
 
     [Header("Estadisticas Logros")]
-    public int gemasTotales;
+    public int gemasGastadas;
     public int enemigosDerrotados;
     public int distanciaTotal;
+    public int heartsCollected;
+    public int timesPlayed;
+
 
 
     public int tiempoDeLaRonda;
@@ -27,8 +30,10 @@ public class GameManager : MonoBehaviour
     public bool showRevive = false;
 
     public int spriteID;
+    public int wandID;
 
     public StoreItem[] storeItems;
+    public Wands[] wandItem;
 
     private void Awake()
     {

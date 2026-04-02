@@ -8,10 +8,17 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
     public bool isProtected = false;
 
     private PlayerAnimManager animManager;
+    [SerializeField] private GameObject shieldAbility;
+
     private void Start()
     {
         actualHealth = maxHealth;
         animManager = GetComponent<PlayerAnimManager>();
+    }
+    private void Update()
+    {
+        shieldAbility.SetActive(isProtected);
+
     }
 
     public void GetDamaged(int damage)
@@ -21,11 +28,12 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
             return;
         }
 
+        animManager.Damaged();
         actualHealth -= damage;
 
         if(actualHealth <= 0)
         {
-            //animation
+            animManager.Death(true);
             OnDeath();
         }
     }
