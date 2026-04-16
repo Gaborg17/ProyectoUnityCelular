@@ -148,6 +148,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (GameManager.Instance.gemasDeRonda >= gemsToChange)
         {
+            AudioManager.Instance.Play("CambiarPoder");
             RewardsSystem.Instance.AddGemsSpent(gemsToChange);
             timer = 0;
             GameManager.Instance.gemasDeRonda -= gemsToChange;
@@ -162,6 +163,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (GameManager.Instance.gemasDeRonda >= gemsToExtend)
         {
+            AudioManager.Instance.Play("ReiniciarTiempo");
             RewardsSystem.Instance.AddGemsSpent(gemsToExtend);
             timer = abilityChangeTimer * durationMultiplier;
             GameManager.Instance.gemasDeRonda -= gemsToExtend;

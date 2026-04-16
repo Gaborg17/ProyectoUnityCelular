@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private ReturnToPool poolReturn;
     private CheckVisibility checkVisibility;
     private EnemyAnimationHandler eAnim;
+
+    private Coroutine deathH;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -153,8 +155,10 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         hypnoEffect.SetActive(true);
 
-        StartCoroutine(DeathAfterHypnosis());
-
+        if(deathH == null)
+        {
+            deathH = StartCoroutine(DeathAfterHypnosis());
+        }
 
         targetPosition = closest?.transform;
     }

@@ -23,19 +23,21 @@ public class SettingsManager : MonoBehaviour
 
     public void SetMusicValue()
     {
-
+        AudioManager.Instance.Play("Tap");
         audioMixer.SetFloat("Music", MathF.Log10(music.value) * 20);
         AudioManager.Instance.musicVolume = music.value;
     }
 
     public void SetSfxsValue()
     {
+        AudioManager.Instance.Play("Tap");
         audioMixer.SetFloat("SFXs", MathF.Log10(sfxs.value) * 20);
         AudioManager.Instance.sfxsVolume = sfxs.value;
     }
 
     public void SetMasterValue()
     {
+        AudioManager.Instance.Play("Tap");
         audioMixer.SetFloat("Master", MathF.Log10(master.value) * 20);
         AudioManager.Instance.masterVolume = master.value;
 
@@ -44,11 +46,13 @@ public class SettingsManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void CloseSettings()
     {
+        AudioManager.Instance.Play("Tap");
         gameObject.SetActive(false);
     }
 

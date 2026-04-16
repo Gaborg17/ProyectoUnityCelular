@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class StoreItem
@@ -46,6 +47,7 @@ public class StoreUI : MonoBehaviour
 
     public void SelectStoreItem(int spriteID)
     {
+        AudioManager.Instance.Play("Tap");
         if (GameManager.Instance.storeItems[spriteID].isPurchased)
         {        
             GameManager.Instance.spriteID = spriteID;
@@ -61,6 +63,8 @@ public class StoreUI : MonoBehaviour
                 GameManager.Instance.storeCoins -= GameManager.Instance.storeItems[spriteID].priceToPurchase;
                 GameManager.Instance.storeItems[spriteID].isPurchased = true;
                 prices[spriteID].gameObject.SetActive(false);
+                Image storeImg = prices[spriteID].gameObject.transform.parent.GetComponent<Image>();
+                storeImg.color = Color.white;
             }
         }
 
@@ -72,6 +76,7 @@ public class StoreUI : MonoBehaviour
 
     public void SelectWand(int wandID)
     {
+        AudioManager.Instance.Play("Tap");
         if (GameManager.Instance.wandItem[wandID].isPurchased)
         {
             GameManager.Instance.wandID = wandID;
@@ -87,6 +92,8 @@ public class StoreUI : MonoBehaviour
                 GameManager.Instance.storeCoins -= GameManager.Instance.wandItem[wandID].priceToPurchase;
                 GameManager.Instance.wandItem[wandID].isPurchased = true;
                 wandPrices[wandID].gameObject.SetActive(false);
+                Image storeImg = wandPrices[wandID].gameObject.transform.parent.GetComponent<Image>();
+                storeImg.color = Color.white;
             }
         }
     }
@@ -98,6 +105,7 @@ public class StoreUI : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
     }
 
@@ -110,6 +118,9 @@ public class StoreUI : MonoBehaviour
             if(GameManager.Instance.storeItems[i].isPurchased)
             {
                 prices[i].gameObject.SetActive(false);
+                Image storeImg = prices[i].gameObject.transform.parent.GetComponent<Image>();
+                storeImg.color = Color.white;
+
             }
 
         }
@@ -125,6 +136,8 @@ public class StoreUI : MonoBehaviour
             if (GameManager.Instance.storeItems[i].isPurchased)
             {
                 wandPrices[i].gameObject.SetActive(false);
+                Image storeImg = wandPrices[i].gameObject.transform.parent.GetComponent<Image>();
+                storeImg.color = Color.white;
             }
 
         }

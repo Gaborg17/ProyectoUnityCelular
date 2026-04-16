@@ -14,7 +14,7 @@ public class ProjectileAbilitySO : AbilitySO
 
     public override void Activate(Transform user, int direction)
     {
-            GameObject projectile = Instantiate(projectilePrefab, user.position, user.transform.parent.localRotation);
+            GameObject projectile = Instantiate(projectilePrefab, user.position, user.transform.localRotation);
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
             rb.AddForce(direction * Vector3.right * speed, ForceMode.Impulse);

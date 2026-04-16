@@ -93,6 +93,7 @@ public class EnemyAttack : MonoBehaviour
     private IEnumerator MeleeAttack()
     {
         eAnim.Attacking();
+        AudioManager.Instance.Play("AtaqueEsqueleto");
         yield return new WaitForSeconds(cooldown);
         attackCoroutine = null;
     }
@@ -100,6 +101,7 @@ public class EnemyAttack : MonoBehaviour
     private IEnumerator AirAttack()
     {
         GameObject projectile = Instantiate(attackPrefab, this.transform.position, this.transform.rotation);
+        AudioManager.Instance.Play("AtaqueAereo");
         eDamage = projectile.GetComponent<EnemyDamage>();
         Rigidbody rbP = projectile.GetComponent<Rigidbody>();
         float direction = Mathf.Sign(enemy.targetPosition.position.x - transform.position.x);

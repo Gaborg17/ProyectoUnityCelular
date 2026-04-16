@@ -7,6 +7,28 @@ public class PlayerAbilityDamage : MonoBehaviour
     [SerializeField] private AbilitySO abilitySO;
     [SerializeField] private LayerMask maskToInteract;
     [SerializeField] private float range;
+
+
+    private void Start()
+    {
+        switch (abilitySO.abilityName)
+        {
+            case "Fireball":
+                AudioManager.Instance.Play("AtaqueFuego");
+                break;
+            case "Congelar":
+                AudioManager.Instance.Play("AtaqueHielo");
+                break;
+            case "Control Mental":
+                AudioManager.Instance.Play("Hipnosis");
+                break;
+            case "Teletransportacion":
+                AudioManager.Instance.Play("TeletransportacionLanzar");
+                break;
+
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Walls") || other.CompareTag("Ground"))
@@ -35,7 +57,7 @@ public class PlayerAbilityDamage : MonoBehaviour
             switch (abilitySO.abilityName)
             {
                 case "Fireball":
-
+                    AudioManager.Instance.Play("ImpactoFuego");
                     foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
                     {
                         if(collider.gameObject.CompareTag("Enemy"))
@@ -45,6 +67,7 @@ public class PlayerAbilityDamage : MonoBehaviour
                     break;
                 case "Congelar":
                     Destroy(this.gameObject);
+                    AudioManager.Instance.Play("ImpactoHielo");
                     foreach (Collider collider in Physics.OverlapSphere(transform.position, range, maskToInteract))
                     {
                         if (collider.gameObject.CompareTag("Enemy"))
@@ -79,7 +102,7 @@ public class PlayerAbilityDamage : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Walls"))
         {
-            GameObject particle = Instantiate(abilitySO.collisionParticle, this.transform.position, this.transform.rotation);
+            GameObject particle = Instantiate(abilitySO.collisionParticle, this.transform.position, Quaternion.Euler(-90,0,0));
 
             Destroy(particle.gameObject, 1f);
             Debug.Log("Collision");
@@ -88,6 +111,7 @@ public class PlayerAbilityDamage : MonoBehaviour
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 Rigidbody rb = player.GetComponent<Rigidbody>();
                 Debug.Log("moviendo");
+                AudioManager.Instance.Play("Teletransportacion");
                 rb.position =collision.GetContact(0).point + Vector3.up * 0.5f;
                 Destroy(this.gameObject);
 
@@ -95,5 +119,20 @@ public class PlayerAbilityDamage : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (abilitySO.abilityName == "Protect")
+        {
+            AudioManager.Instance.Play("EscudoOn");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (abilitySO.abilityName == "Protect")
+        {
+            AudioManager.Instance.Play("EscudoOff");
+        }
+    }
 
 }

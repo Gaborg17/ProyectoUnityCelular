@@ -2288,6 +2288,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 20
+    achievementSprite: {fileID: 21300000, guid: 9da042ed0d5368f408609becfd840dd3, type: 3}
   - rewardType: 2
     name: Escalador
     description: Avanza 100 metros
@@ -2295,6 +2296,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 25
+    achievementSprite: {fileID: 21300000, guid: c1210b6c72b206340933c4793e15aea3, type: 3}
   - rewardType: 1
     name: "H\xE9roe"
     description: Elimina 30 enemigos
@@ -2302,6 +2304,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 60
+    achievementSprite: {fileID: 21300000, guid: 2febbaa260746fe4ea2c9286f9be4272, type: 3}
   - rewardType: 2
     name: Profesional
     description: Avanza 500 metros
@@ -2309,6 +2312,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 100
+    achievementSprite: {fileID: 21300000, guid: 87cf47558c34d10489f71a79684916be, type: 3}
   - rewardType: 4
     name: Medico
     description: Colecciona 30 Corazones
@@ -2316,6 +2320,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 90
+    achievementSprite: {fileID: 21300000, guid: 3d56bda8f1e2e694b856e7ba940af9c2, type: 3}
   - rewardType: 5
     name: Gamer
     description: Juega 100 veces
@@ -2323,6 +2328,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 200
+    achievementSprite: {fileID: 21300000, guid: d760e092e35da9e41aa9544ad41c9b60, type: 3}
   - rewardType: 6
     name: Millonario
     description: Junta 1000 gemas en una partida
@@ -2330,6 +2336,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 150
+    achievementSprite: {fileID: 21300000, guid: 5854a89133ee208409f3a3b180683691, type: 3}
   - rewardType: 1
     name: Carnicero
     description: Elimina 200 enemigos
@@ -2337,6 +2344,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 350
+    achievementSprite: {fileID: 21300000, guid: 9fe7180eb4172c74681475244b9709f2, type: 3}
   - rewardType: 3
     name: Comodines
     description: Gasta 500 gemas
@@ -2344,6 +2352,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 100
+    achievementSprite: {fileID: 21300000, guid: 6367398e4903b35409065a57ce38d183, type: 3}
   - rewardType: 2
     name: Astronauta
     description: Avanza 1200 metros
@@ -2351,6 +2360,7 @@ MonoBehaviour:
     rewardProgress: 0
     completed: 0
     rewardAmount: 500
+    achievementSprite: {fileID: 21300000, guid: bb8b97a8ecf844d42975e9fe43cacf48, type: 3}
 --- !u!1 &1230349549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,7 +2903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemasDeRonda: 0
-  gemasParaRevivir: 0
+  gemasParaRevivir: 100
   storeCoins: 0
   gemasGastadas: 0
   enemigosDerrotados: 0
@@ -4047,7 +4057,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db83a57687ee3b4d95efb76e1d72b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonidos: []
+  sonidos:
+  - audioName: AtaqueAereo
+    audioClip: {fileID: 8300000, guid: 3d07dc109f117eb43925277a8ede9696, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: AtaqueEspada
+    audioClip: {fileID: 8300000, guid: a401eb55f7878b847979f6b7c4fa3d54, type: 3}
+    volume: 0.8
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: AtaqueEsqueleto
+    audioClip: {fileID: 8300000, guid: 51c35e8cf4c4c1f43bce6957f1248cbf, type: 3}
+    volume: 0.8
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: AtaqueFuego
+    audioClip: {fileID: 8300000, guid: e47a02a4bb09df046bed694564e96aa9, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: AtaqueHielo
+    audioClip: {fileID: 8300000, guid: 2528c9be45a51d94e82003729138d275, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: CambiarPoder
+    audioClip: {fileID: 8300000, guid: ee4291494996f014baa7675da679638b, type: 3}
+    volume: 0.7
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: EscudoOff
+    audioClip: {fileID: 8300000, guid: cda88cf1a32f5ad4cb4a04fdd47e4c6c, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: EscudoOn
+    audioClip: {fileID: 8300000, guid: 971cb50ff8f1c404c9030999a7423298, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Gema
+    audioClip: {fileID: 8300000, guid: d6d73084f3a6c6543b59d8f427912312, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Hipnosis
+    audioClip: {fileID: 8300000, guid: e0294240e506fcb4e885753fabcfb9aa, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: ImpactoFuego
+    audioClip: {fileID: 8300000, guid: b1860c91724af8d45ad285ba15278fe6, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: ImpactoHielo
+    audioClip: {fileID: 8300000, guid: f729babd1c2af924790199d8d4d9e24b, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Logro
+    audioClip: {fileID: 8300000, guid: 0b632a828c160754ab95a07029363b80, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: "RecibirDa\xF1o"
+    audioClip: {fileID: 8300000, guid: 637c0d4f45500184fb004020eff09872, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: ReiniciarTiempo
+    audioClip: {fileID: 8300000, guid: e2c66d4522215514caf5159b24ac469f, type: 3}
+    volume: 0.7
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Salto
+    audioClip: {fileID: 8300000, guid: 3ccdd586ca4a3d64dbf22b0b27ea2184, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Tap
+    audioClip: {fileID: 8300000, guid: becd5d4a14312e542a8ef9e4fc1fe962, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Teletransportacion
+    audioClip: {fileID: 8300000, guid: 5918eedbb997b2445a368ea37b4c4a89, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: TeletransportacionLanzar
+    audioClip: {fileID: 8300000, guid: c2df0dde7f1a1854787467a35b24a67c, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
   mixer: {fileID: 24100000, guid: 885bbb73258eded428abffe92f6ab1ee, type: 2}
   sfxs: {fileID: -6541840935683082323, guid: 885bbb73258eded428abffe92f6ab1ee, type: 2}
   sfxsVolume: 1

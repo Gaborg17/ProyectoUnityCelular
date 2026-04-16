@@ -88,12 +88,14 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
+        AudioManager.Instance.Play("Tap");
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
 
     public void Continue()
     {
+        AudioManager.Instance.Play("Tap");
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
     }
@@ -114,6 +116,7 @@ public class UIManager : MonoBehaviour
 
     public void ReviveButton()
     {
+        AudioManager.Instance.Play("Tap");
         if (GameManager.Instance.gemasDeRonda >= GameManager.Instance.gemasParaRevivir)
         {
             RewardsSystem.Instance.AddGemsSpent(GameManager.Instance.gemasParaRevivir);
@@ -139,6 +142,7 @@ public class UIManager : MonoBehaviour
 
     public void GiveUp()
     {
+        AudioManager.Instance.Play("Tap");
         GameManager.Instance.showRevive = false;
         RewardsSystem.Instance.AddDistance(GameManager.Instance.distanciaDeLaRonda);
         reviveMenu.SetActive(false);
@@ -176,11 +180,13 @@ public class UIManager : MonoBehaviour
 
     public void OpenSettings()
     {
+        AudioManager.Instance.Play("Tap");
         settingsMenu.SetActive(true);
     }
 
     public void ExitToMenu()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
         GameManager.Instance.gameOver = false;
         GameManager.Instance.distanciaDeLaRonda = 0;

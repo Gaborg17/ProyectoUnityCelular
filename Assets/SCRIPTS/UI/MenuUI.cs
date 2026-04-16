@@ -8,26 +8,31 @@ public class MenuUI : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
         RewardsSystem.Instance.AddPlayAmount(1);
+        AudioManager.Instance.Play("Tap");
     }
 
     public void Store()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("Store");
     }
 
 
     public void Settings()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("Settings");
     }
 
     public void Achievements()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("Achievements");
     }
 
     public void Exit()
     {
+        AudioManager.Instance.Play("Tap");
         Application.Quit();
     }
 

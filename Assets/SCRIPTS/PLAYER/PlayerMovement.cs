@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpResetTime;
     [SerializeField] private float doubleJumpDelay;
 
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -98,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
         if (tryJump == true && coyoteTimeCounter > 0f)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            AudioManager.Instance.Play("Salto");
+
             canJump = true;
             tryJump = false;
             if (resetJump != null)
@@ -213,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce * 1.1f, ForceMode.Impulse);
         canJump = false;
         animManager.Jump();
+        AudioManager.Instance.Play("Salto");
         doubleJump = null;
     }
 

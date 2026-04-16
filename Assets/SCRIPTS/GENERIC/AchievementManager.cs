@@ -16,7 +16,7 @@ public class AchievementManager : MonoBehaviour
             if (reward.completed)
             {
                 disp.SetDataCompleted(
-                null,        
+                reward.achievementSprite,        
                 reward.name,        
                 reward.description
             );
@@ -24,7 +24,7 @@ public class AchievementManager : MonoBehaviour
             else
             {
                 disp.SetData(
-                null,
+                reward.achievementSprite,
                 reward.name,
                 reward.description,
                 reward.rewardProgress,
@@ -37,6 +37,7 @@ public class AchievementManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
     }
 

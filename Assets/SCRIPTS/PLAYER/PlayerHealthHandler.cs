@@ -30,8 +30,9 @@ public class PlayerHealthHandler : MonoBehaviour, IDamageable
 
         animManager.Damaged();
         actualHealth -= damage;
+        AudioManager.Instance.Play("RecibirDaño");
 
-        if(actualHealth <= 0)
+        if (actualHealth <= 0)
         {
             animManager.Death(true);
             OnDeath();

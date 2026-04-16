@@ -15,6 +15,7 @@ public class RewardRequirements
     public int rewardProgress;
     public bool completed;
     public int rewardAmount;
+    public Sprite achievementSprite;
 
 }
 
@@ -121,5 +122,6 @@ public class RewardsSystem : MonoBehaviour
         Debug.Log($"¡Misión completada! {description} - Recompensa: {reward.rewardAmount}");
 
         GameManager.Instance.storeCoins += reward.rewardAmount;
+        AudioManager.Instance.Play("Logro");
     }
 }
