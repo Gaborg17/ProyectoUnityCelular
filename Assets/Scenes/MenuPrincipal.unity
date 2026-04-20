@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 42265990}
   - component: {fileID: 42265989}
   - component: {fileID: 42265988}
+  - component: {fileID: 42265993}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -457,6 +458,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a714c171c91a99b41a888456678dd01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &42265993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42265987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98570d05b50b5904ebc17470467996ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &152704833
@@ -4150,6 +4163,11 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - audioName: TeletransportacionLanzar
     audioClip: {fileID: 8300000, guid: c2df0dde7f1a1854787467a35b24a67c, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioName: Error
+    audioClip: {fileID: 8300000, guid: 3d15bd8e1e703e042b3fe870de4b417c, type: 3}
     volume: 1
     loop: 0
     audioSource: {fileID: 0}

@@ -32,6 +32,7 @@ public class MenuUI : MonoBehaviour
 
     public void Exit()
     {
+        SaveSystem.GuardarPartida();
         AudioManager.Instance.Play("Tap");
         Application.Quit();
     }

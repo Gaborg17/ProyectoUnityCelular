@@ -115,7 +115,7 @@ public class RewardsSystem : MonoBehaviour
     private void GrantReward(RewardRequirements reward)
     {
         // Formatear la descripción con el objetivo recién completado
-
+        StartCoroutine(GameManager.Instance.RewardCompleted());
         string description = string.Format(reward.description, reward.target);
         reward.completed = true;
 

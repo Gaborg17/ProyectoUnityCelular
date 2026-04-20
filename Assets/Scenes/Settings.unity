@@ -1509,6 +1509,11 @@ MonoBehaviour:
     volume: 1
     loop: 0
     audioSource: {fileID: 0}
+  - audioName: Error
+    audioClip: {fileID: 8300000, guid: 3d15bd8e1e703e042b3fe870de4b417c, type: 3}
+    volume: 1
+    loop: 0
+    audioSource: {fileID: 0}
   mixer: {fileID: 24100000, guid: 885bbb73258eded428abffe92f6ab1ee, type: 2}
   sfxs: {fileID: -6541840935683082323, guid: 885bbb73258eded428abffe92f6ab1ee, type: 2}
   sfxsVolume: 1

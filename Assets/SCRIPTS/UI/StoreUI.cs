@@ -66,6 +66,10 @@ public class StoreUI : MonoBehaviour
                 Image storeImg = prices[spriteID].gameObject.transform.parent.GetComponent<Image>();
                 storeImg.color = Color.white;
             }
+            else
+            {
+                AudioManager.Instance.Play("Error");
+            }
         }
 
 
@@ -95,6 +99,10 @@ public class StoreUI : MonoBehaviour
                 Image storeImg = wandPrices[wandID].gameObject.transform.parent.GetComponent<Image>();
                 storeImg.color = Color.white;
             }
+            else
+            {
+                AudioManager.Instance.Play("Error");
+            }
         }
     }
 
@@ -105,6 +113,7 @@ public class StoreUI : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        SaveSystem.GuardarPartida();
         AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
     }

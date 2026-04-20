@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
     public StoreItem[] storeItems;
     public Wands[] wandItem;
 
+
+    public bool showCompleted;
     private void Awake()
     {
         if (Instance == null)
@@ -47,4 +50,13 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
+    public IEnumerator RewardCompleted()
+    {
+        showCompleted = true;
+        yield return new WaitForSeconds(1);
+        showCompleted = false;
+    }
+
 }

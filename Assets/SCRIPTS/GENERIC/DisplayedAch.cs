@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DisplayedAch : MonoBehaviour
 {
     [SerializeField] private Image achImage;
+    [SerializeField] private Image completed;
     [SerializeField] private TextMeshProUGUI achName;
     [SerializeField] private TextMeshProUGUI achDesc;
     [SerializeField] private TextMeshProUGUI achProg;
@@ -18,13 +19,15 @@ public class DisplayedAch : MonoBehaviour
         achDesc.text = description;
         achProg.text = $"{current} / {target}";
         achReward.text = reward.ToString();
+        completed.gameObject.SetActive(false);
     }
     public void SetDataCompleted(Sprite icon, string name, string description)
     {
         achImage.sprite = icon;
         achName.text = name;
         achDesc.text = description;
-        achProg.text = $"Completed";
-        achReward.text = "Claimed";
+        achProg.gameObject.SetActive(false);
+        achReward.gameObject.SetActive(false);
+        completed.gameObject.SetActive(true);
     }
 }

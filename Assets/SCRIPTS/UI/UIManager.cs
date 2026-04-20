@@ -129,6 +129,11 @@ public class UIManager : MonoBehaviour
             CameraMovement camMov = FindAnyObjectByType<CameraMovement>();
             camMov.SetToPlayerPos();
         }
+
+        else
+        {
+            AudioManager.Instance.Play("Error");
+        }
     }
 
     public void ShowRevive()
@@ -186,6 +191,7 @@ public class UIManager : MonoBehaviour
 
     public void ExitToMenu()
     {
+        SaveSystem.GuardarPartida();
         AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
         GameManager.Instance.gameOver = false;
