@@ -1356,6 +1356,7 @@ MonoBehaviour:
     isPurchased: 0
     priceToPurchase: 25
     spriteAsset: {fileID: 21300000, guid: 8622bb25cee8e5949b16004c0f9a8229, type: 3}
+  showCompleted: 0
 --- !u!4 &1213827785
 Transform:
   m_ObjectHideFlags: 0
@@ -2629,7 +2630,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -74}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 215.59, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115677024
 MonoBehaviour:
@@ -2653,8 +2654,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Achievements
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7aeb47f21f00be84d8be9861c103034b, type: 2}
-  m_sharedMaterial: {fileID: 1905127606302014915, guid: 7aeb47f21f00be84d8be9861c103034b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7b62840a39323b4786edf930bfee4cd, type: 2}
+  m_sharedMaterial: {fileID: 624943359088588723, guid: e7b62840a39323b4786edf930bfee4cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
