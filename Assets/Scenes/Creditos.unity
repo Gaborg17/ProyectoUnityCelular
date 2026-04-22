@@ -944,7 +944,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "XD GAMES\n\nC\xF3digo y Sistemas: Gabriel\n\nModelado y Entorno: Emilio
-    & Noel\n\nInterfaz de Usuario: Noel\n\nArquitectura de Niveles: Emilio"
+    & Noel\n\nInterfaz de Usuario y Arte 2D: Noel\n\nDise\xF1o de Nivel, VFX y M\xFAsica:
+    Emilio"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7aeb47f21f00be84d8be9861c103034b, type: 2}
   m_sharedMaterial: {fileID: 1905127606302014915, guid: 7aeb47f21f00be84d8be9861c103034b, type: 2}
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Por si Gabo quiere poner su IG
+  m_text: gaborg17
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2d9386dcc50778642a4af39ddaa07b14, type: 2}
   m_sharedMaterial: {fileID: 1897077858697279994, guid: 2d9386dcc50778642a4af39ddaa07b14, type: 2}
