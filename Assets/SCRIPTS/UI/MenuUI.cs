@@ -17,6 +17,11 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene("Store");
     }
 
+    public void Creditos()
+    {
+        AudioManager.Instance.Play("Tap");
+        SceneManager.LoadScene("Creditos");
+    }
 
     public void Settings()
     {
