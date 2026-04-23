@@ -15,6 +15,8 @@ public class PerfilJugador
     public int spriteID;
     public int wandID;
 
+    public int mejorTiempo;
+    public int mejorDistancia;
     
     public bool[] storeItemsIsPurchased;
     
@@ -44,6 +46,10 @@ public class PerfilJugador
 
             spriteID = GameManager.Instance.spriteID;
             wandID = GameManager.Instance.wandID;
+
+            mejorDistancia = GameManager.Instance.mejorDistancia;
+            mejorTiempo = GameManager.Instance.mejorTiempo;
+
 
             storeItemsIsPurchased = new bool[GameManager.Instance.storeItems.Length];
             for (int i = 0; i < GameManager.Instance.storeItems.Length; i++)

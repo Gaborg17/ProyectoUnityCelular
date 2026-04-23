@@ -49,6 +49,7 @@ public class SettingsManager : MonoBehaviour
         SaveSystem.GuardarPartida();
         AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");
+        AudioManager.Instance.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void CloseSettings()

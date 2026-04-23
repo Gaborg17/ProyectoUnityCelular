@@ -9,6 +9,7 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene("Game");
         RewardsSystem.Instance.AddPlayAmount(1);
         AudioManager.Instance.Play("Tap");
+        AudioManager.Instance.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void Store()

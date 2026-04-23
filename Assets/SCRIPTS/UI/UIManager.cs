@@ -120,6 +120,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.gemasDeRonda >= GameManager.Instance.gemasParaRevivir)
         {
             RewardsSystem.Instance.AddGemsSpent(GameManager.Instance.gemasParaRevivir);
+            GameManager.Instance.gemasDeRonda -= GameManager.Instance.gemasParaRevivir;
             reviveMenu.SetActive(false);
             playerHealthHandler.actualHealth = playerHealthHandler.maxHealth;
             PlayerAnimManager animMngr = FindAnyObjectByType<PlayerAnimManager>();
@@ -191,6 +192,7 @@ public class UIManager : MonoBehaviour
 
     public void ExitToMenu()
     {
+        AudioManager.Instance.transform.GetChild(0).gameObject.SetActive(true);
         SaveSystem.GuardarPartida();
         AudioManager.Instance.Play("Tap");
         SceneManager.LoadScene("MenuPrincipal");

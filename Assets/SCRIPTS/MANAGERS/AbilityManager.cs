@@ -149,6 +149,7 @@ public class AbilityManager : MonoBehaviour
         if (GameManager.Instance.gemasDeRonda >= gemsToChange)
         {
             AudioManager.Instance.Play("CambiarPoder");
+            gemsToChange *= 2;
             RewardsSystem.Instance.AddGemsSpent(gemsToChange);
             timer = 0;
             GameManager.Instance.gemasDeRonda -= gemsToChange;

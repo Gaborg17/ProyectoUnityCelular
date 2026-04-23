@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool frozen;
     [SerializeField] private GameObject freezeEffect;
     [SerializeField] private GameObject hypnoEffect;
+    [SerializeField] private GameObject deathPart;
+    [SerializeField] private GameObject body;
     public bool mindControl;
     public bool followingTarget = false;
 
@@ -60,7 +62,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void OnDisable()
     {
+        body.SetActive(true);
         freezeEffect.SetActive(false);
+        deathPart.SetActive(false);
         targetPosition = null;
         transform.position = Vector3.zero;
     }
@@ -188,6 +192,8 @@ public class Enemy : MonoBehaviour, IDamageable
         eAnim.Death(death);
         rbE.isKinematic = true;
         cEnemy.enabled = false;
+        deathPart.SetActive(true);
+        body.SetActive(false);
         RewardsSystem.Instance.AddEnemyKill(1);
         ObjectPooling oP = FindAnyObjectByType<ObjectPooling>();
         oP.SpawnFromPool("Gema", this.transform.position);

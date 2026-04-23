@@ -28,6 +28,8 @@ public class CargarDatos : MonoBehaviour
             GameManager.Instance.spriteID = perfil.spriteID;
             GameManager.Instance.wandID = perfil.wandID;
 
+            GameManager.Instance.mejorTiempo = perfil.mejorTiempo;
+            GameManager.Instance.mejorDistancia = perfil.mejorDistancia;
 
 
             for (int i = 0; i < GameManager.Instance.storeItems.Length; i++)

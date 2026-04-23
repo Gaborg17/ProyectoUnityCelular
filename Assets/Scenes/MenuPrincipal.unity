@@ -3644,15 +3644,15 @@ MonoBehaviour:
     spriteAsset: {fileID: 7108339969198208228, guid: afa2889c9336e664cbbb5d4cedc74c62, type: 3}
   - itemObjectID: 1
     isPurchased: 0
-    priceToPurchase: 15
+    priceToPurchase: 100
     spriteAsset: {fileID: 7108339969198208228, guid: 82569c8aadae2054f9281e03ae1df36b, type: 3}
   - itemObjectID: 2
     isPurchased: 0
-    priceToPurchase: 20
+    priceToPurchase: 450
     spriteAsset: {fileID: 7108339969198208228, guid: 7fb06a94d62384840b6c3bfaa75afe27, type: 3}
   - itemObjectID: 3
     isPurchased: 0
-    priceToPurchase: 25
+    priceToPurchase: 600
     spriteAsset: {fileID: 7108339969198208228, guid: e58c401655f95c843aeead6e22ea9354, type: 3}
   wandItem:
   - itemObjectID: 0
@@ -3661,15 +3661,15 @@ MonoBehaviour:
     spriteAsset: {fileID: 21300000, guid: ec416508e824a8b4dac3f65983d9d714, type: 3}
   - itemObjectID: 1
     isPurchased: 0
-    priceToPurchase: 15
+    priceToPurchase: 120
     spriteAsset: {fileID: 21300000, guid: 7aca99ef1f4c86f44a01f6e712ea8696, type: 3}
   - itemObjectID: 2
     isPurchased: 0
-    priceToPurchase: 20
+    priceToPurchase: 180
     spriteAsset: {fileID: 21300000, guid: 33843dd27e3ee144d9cf2c4ea41edfca, type: 3}
   - itemObjectID: 3
     isPurchased: 0
-    priceToPurchase: 25
+    priceToPurchase: 160
     spriteAsset: {fileID: 21300000, guid: 8622bb25cee8e5949b16004c0f9a8229, type: 3}
   showCompleted: 0
 --- !u!4 &1442473971
@@ -4763,7 +4763,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2076912248}
   m_Father: {fileID: 1442473971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2039220917
@@ -5054,7 +5055,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5144,12 +5145,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076912246}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1267.7799, y: -3.8754873, z: 206.18037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2039220916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -5158,7 +5159,6 @@ SceneRoots:
   - {fileID: 42265991}
   - {fileID: 936716455}
   - {fileID: 1189802103}
-  - {fileID: 2076912248}
   - {fileID: 155799549}
   - {fileID: 1471556323}
   - {fileID: 1442473971}
