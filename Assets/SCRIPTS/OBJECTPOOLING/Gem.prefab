@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 2320314144419481845}
   - component: {fileID: 1324189466497928258}
   - component: {fileID: 4004517083163519989}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gem
-  m_TagString: Untagged
+  m_TagString: Gems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,9 +160,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 482358751119463184}
     m_Modifications:
+    - target: {fileID: 264587175878563632, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1233409682611762971, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
       propertyPath: m_Name
       value: corazon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233409682611762971, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1233409682611762971, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
       propertyPath: m_IsActive
@@ -219,6 +227,14 @@ PrefabInstance:
     - target: {fileID: 1897743045670579617, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155544180261075279, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532717260620163421, guid: 0a2ba8ca7c8e5e645a24eb422eb65558, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -302,6 +318,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d09d5b50c119be6428b82411b5fba4af, type: 3}
       propertyPath: m_Name
       value: gemas
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d09d5b50c119be6428b82411b5fba4af, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d09d5b50c119be6428b82411b5fba4af, type: 3}
       propertyPath: m_IsActive

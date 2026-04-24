@@ -22,7 +22,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float abilityChangeTimer;
 
     [SerializeField] private Transform abilitySpawn;
-    
+
 
 
     [SerializeField] private TextMeshProUGUI priceCA;
@@ -37,6 +37,11 @@ public class AbilityManager : MonoBehaviour
 
     public int gemsToChange;
     public int gemsToExtend;
+
+
+    [SerializeField] private GameObject wand;
+    [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject[] slashes;
     private void OnValidate()
     {
         buttonSprite.color = currentAbility.tempColor;
@@ -71,6 +76,24 @@ public class AbilityManager : MonoBehaviour
             {
                 pH.isProtected = false;
             }
+
+            if (currentAbility.name == "SwordA")
+            {
+                sword.SetActive(true);
+                wand.SetActive(false);
+            }
+
+            if (currentAbility.name != "SwordA")
+            {
+                sword.SetActive(false);
+                wand.SetActive(true);
+            }
+        }
+
+        if (!AbilitySO.isOnCooldown)
+        {
+            slashes[0].gameObject.SetActive(false);
+            slashes[1].gameObject.SetActive(false);
         }
 
     }
@@ -81,10 +104,24 @@ public class AbilityManager : MonoBehaviour
             currentAbility.Activate(abilitySpawn, pM.direction);
             StartCoroutine(currentAbility.Cooldown());
             pM.actualSpeed = pM.walkSpeed * currentAbility.playerSpeedMultiplier;
+            if (currentAbility.name == "SwordA")
+            {
+                if (pM.lookingLeft == true)
+                {
+                    slashes[0].gameObject.SetActive(true);
+                }
+                if (pM.lookingLeft == false)
+                {
+                    slashes[1].gameObject.SetActive(true);
+                }
+            }
         }
         else
         {
             Debug.Log("Ability in Cooldown:" + currentAbility.name);
+            slashes[0].gameObject.SetActive(false);
+            slashes[1].gameObject.SetActive(false);
+
         }
     }
 
@@ -108,7 +145,7 @@ public class AbilityManager : MonoBehaviour
 
         nButtonSprite.color = nextAbility.tempColor;
         nButtonSpriteImg.sprite = nextAbility.icon;
-       
+
 
 
         if (!AbilitySO.isOnCooldown)
@@ -149,10 +186,10 @@ public class AbilityManager : MonoBehaviour
         if (GameManager.Instance.gemasDeRonda >= gemsToChange)
         {
             AudioManager.Instance.Play("CambiarPoder");
-            gemsToChange *= 2;
             RewardsSystem.Instance.AddGemsSpent(gemsToChange);
             timer = 0;
             GameManager.Instance.gemasDeRonda -= gemsToChange;
+            gemsToChange *= 2;
             priceCA.text = gemsToChange.ToString();
         }
 
